@@ -15,12 +15,12 @@ function vocalesycons(){
 }
 function esPalindromo(){
     $cadena = $_GET["cadena"];
+    $coinc=0;
     
     for($i=0;$i<round(strlen($cadena)/2,0,PHP_ROUND_HALF_DOWN);$i++){
-        
+        echo ($i==$cadena[strlen($cadena) - 1 - $i])? true: false;
     }
 
-    return ["voc"=>$numVocales,"cons"=>$numCons];
 }
 ?>
 
