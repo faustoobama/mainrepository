@@ -33,18 +33,19 @@ printPir();
     <style>
 
         .maincont{
+            --var-ancho: 50px;
             display: flex;
             width: auto;
         }
 
         .filled{
             border: 1px solid black;
-            width: 10px;
-            height: 10px;
+            width: var(--var-ancho);
+            height: var(--var-ancho);
         }
         .void{
-            width: 10px;
-            height: 10px;
+            width: var(--var-ancho);
+            height: var(--var-ancho);
             border: 1px solid transparent;
         }
     </style>
