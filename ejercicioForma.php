@@ -1,6 +1,8 @@
 <?php
 
-$cadena = $_GET["cadena"];
+$cadena = "";
+
+if (isset($_GET["cadena"])) $cadena = $_GET["cadena"];
 
 function cantVocCons(){
     global $cadena;
@@ -41,11 +43,26 @@ function esPalindromo(){
     <title>Ejercicio Cadenas</title>
 
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,500&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+        @keyframes neon{
+            0%{
+                color: rgba(200,0,0,.9);
+            }
+            40%{
+                color: rgba(255,0,0,1);
+            }
+            60%{
+                color: rgba(255,0,0,1);
+            }
+            100%{
+                color: rgba(200,0,0,.9);
+            }
+            
+        }
         *{
             margin: 0;
             padding: 0;
@@ -53,7 +70,7 @@ function esPalindromo(){
         body{
             background: black;
             padding-top: 10px;
-            transition: .4s ease-in-out;
+            transition: .3s all;
         }
         .cont{
             min-width: 240px;
@@ -68,7 +85,9 @@ function esPalindromo(){
             width: calc(100% - 12px);
             height: 30px;
             padding-left: 10px;
-            font-size:  18px; 
+            font-size:  18px;
+            background: white;
+            transform: translateZ(15px);
         }
         #enviar{
             display: block;
@@ -83,6 +102,13 @@ function esPalindromo(){
             font-size:  18px;
             font-family: 'Outfit';
             letter-spacing: 5px;
+            transform: translateZ(15px);
+            
+            
+        }
+        form{
+            transform-style: preserve-3d;
+            transform: perspective(300px) rotateX(-3deg);
         }
         #Title{
             text-align: center;
@@ -93,10 +119,11 @@ function esPalindromo(){
             font-size: 60px;
             transform-origin: top;
             transform-style: preserve-3d;
-            transform: perspective(111px) rotateX(-15deg);
+            transform: perspective(111px) rotateX(-3deg);
             color: rgba(200,0,0,1);
             font-family: 'Outfit';
             letter-spacing: 7px;
+            animation: neon 1.5s infinite;
         }
         #Title::before{
             content: 'FORMULARIO';
@@ -107,7 +134,7 @@ function esPalindromo(){
             color: rgba(200,0,0,0.1);
             transform-origin: bottom;
             text-shadow: 0px 0px 100px rgba(255,0,0,0.9);
-            transform: perspective(1000px) rotateX(-160deg) translateY(25px);
+            transform: perspective(1000px) rotateX(-145deg) translateY(25px);
         }
         #elformulario{
             margin-top: 25px;
@@ -117,11 +144,12 @@ function esPalindromo(){
             color: white;
             font-size: 18px;
             font-family: 'Outfit';
-            text-shadow: 2px 2px 8px rgba(255,0,0,0.4)
+            text-shadow: 2px 2px 8px rgba(255,0,0,0.9)
         }
         .thebody{
             padding: 10px;
         }
+        
     </style>
 </head>
 
