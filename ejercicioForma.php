@@ -19,12 +19,16 @@ function esPalindromo(){
     global $cadena;
     $resultado;
 
-    do{
-        $resultado=($cadena[$i]==$cadena[strlen($cadena) - 1 - $i]);
+    if(strlen($cadena) > 0){
+        do{
+            $resultado=($cadena[$i]==$cadena[strlen($cadena) - 1 - $i]);
+        }
+        while($cadena[$i] == $cadena[strlen($cadena) - 1 - $i] && $i < $cadena[strlen($cadena)]);
+    
+        return ($resultado==1)?"Si, lo es":"No lo es";
+    }else {
+        return "No se sabe ... cadena vacia";
     }
-    while($cadena[$i] == $cadena[strlen($cadena) - 1 - $i] && $i < $cadena[strlen($cadena)]);
-
-    return ($resultado==1)?"Si, lo es":"No lo es";
 }
 ?>
 
@@ -37,12 +41,19 @@ function esPalindromo(){
     <title>Ejercicio Cadenas</title>
 
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
         *{
             margin: 0;
             padding: 0;
         }
         body{
             background: black;
+            padding-top: 10px;
+            transition: .4s ease-in-out;
         }
         .cont{
             min-width: 240px;
@@ -52,6 +63,7 @@ function esPalindromo(){
             min-height: 60px;
         }
         #cadena{
+            font-family: Spectral;
             display: block;
             width: calc(100% - 12px);
             height: 30px;
@@ -69,28 +81,33 @@ function esPalindromo(){
             border: none;
             cursor: pointer;
             font-size:  18px;
+            font-family: 'Outfit';
+            letter-spacing: 5px;
         }
         #Title{
             text-align: center;
             min-width: 240px;
             width: 90%;
             margin: 0 auto;
-            min-height: 80px;
-            font-size: 80px;
+            min-height: 60px;
+            font-size: 60px;
             transform-origin: top;
             transform-style: preserve-3d;
             transform: perspective(111px) rotateX(-15deg);
-            color: rgba(200,0,0,1);;
+            color: rgba(200,0,0,1);
+            font-family: 'Outfit';
+            letter-spacing: 7px;
         }
         #Title::before{
-            content: 'Formulario';
+            content: 'FORMULARIO';
             position: absolute;
             left: 0;
             width: 100%;
             height: 100%;
             color: rgba(200,0,0,0.1);
             transform-origin: bottom;
-            transform: perspective(1000px) rotateX(-160deg) translateY(29px);
+            text-shadow: 0px 0px 100px rgba(255,0,0,0.9);
+            transform: perspective(1000px) rotateX(-160deg) translateY(25px);
         }
         #elformulario{
             margin-top: 25px;
@@ -98,7 +115,9 @@ function esPalindromo(){
         #captions{
             height: auto;
             color: white;
-            font-size: 16px;
+            font-size: 18px;
+            font-family: 'Outfit';
+            text-shadow: 2px 2px 8px rgba(255,0,0,0.4)
         }
         .thebody{
             padding: 10px;
@@ -107,20 +126,31 @@ function esPalindromo(){
 </head>
 
 <body>
-    <h2 id="Title">Formulario</h2>
+    <h2 id="Title">FORMULARIO</h2>
     <div class="cont  thebody" id="elformulario">
         <form action="./ejercicioForma.php" method="get">
             <input type="text" name="cadena" id="cadena" placeholder="Introduce la cadena" value="<?=$cadena?>">
-            <input type="submit" value="enviar" id="enviar">
+            <input type="submit" value="ENVIAR" id="enviar">
         </form>
     </div>
 
     <div class="cont thebody" id="captions">
-        <div>Cadena enviada: <?=$cadena?></div>
-        <div>Numero de vocales: <?php echo cantVocCons()["voc"]?></div>
-        <div>Numero de consonantes: <?php echo cantVocCons()["cons"]?></div>
-        <div>¿Es palíndromo?: <?php echo esPalindromo()?></div>
+        <div>Cadena enviada: <b><?=$cadena?></b></div>
+        <div>Numero de vocales: <b><?php echo cantVocCons()["voc"]?></b></div>
+        <div>Numero de consonantes: <b><?php echo cantVocCons()["cons"]?></b></div>
+        <div>¿Es palíndromo?: <b><?php echo esPalindromo()?></b></div>
     </div>
     
 </body>
+<script>
+    document.addEventListener('mouseover',e=>{
+        if(e.clientX < 150){
+            document.querySelector('body').style.transform="perspective(400px) rotateY(-18deg)";
+        }else{
+            if(e.clientX > 700){
+                document.querySelector('body').style.transform="perspective(400px) rotateY(18deg)";
+            }else document.querySelector('body').style.transform="perspective(400px) rotateY(-0deg)";
+        }
+    });
+</script>
 </html>
