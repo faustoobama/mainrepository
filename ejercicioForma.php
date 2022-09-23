@@ -143,11 +143,11 @@ function esPalindromo(){
     
 </body>
 <script>
-    document.addEventListener('mouseover',e=>{
-        if(e.clientX < 150){
+    document.addEventListener('mousemove',e=>{
+        if(e.clientX <= (window.innerWidth)/5 ){
             document.querySelector('body').style.transform="perspective(400px) rotateY(-18deg)";
         }else{
-            if(e.clientX > 700){
+            if(e.clientX > window.innerWidth - (window.innerWidth/5)){
                 document.querySelector('body').style.transform="perspective(400px) rotateY(18deg)";
             }else document.querySelector('body').style.transform="perspective(400px) rotateY(-0deg)";
         }
