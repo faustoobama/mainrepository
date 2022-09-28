@@ -12,27 +12,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,500&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
-        @keyframes neon{
-            0%{
-                color: rgba(200,0,0,.9);
-            }
-            40%{
-                color: rgba(255,0,0,1);
-            }
-            60%{
-                color: rgba(255,0,0,1);
-            }
-            100%{
-                color: rgba(200,0,0,.9);
-            }
-            
-        }
+
         *{
             margin: 0;
             padding: 0;
         }
         body{
-            background: black;
+            background: white;;
             padding-top: 10px;
             transition: .3s all;
         }
@@ -50,10 +36,11 @@
             height: 30px;
             padding-left: 10px;
             font-size:  18px;
-            background: white;
             transform: translateZ(15px);
             margin: 10px 0;
             outline: none;
+            border: 1px solid rgb(0, 177, 200);
+            color: rgb(101, 101, 101);
         }
 
         #enviar{
@@ -63,7 +50,7 @@
             height: 30px;
             border-radius: 0px;
             color: white;
-            background: rgba(200,0,0,1);
+            background: rgb(0, 177, 200);
             border: none;
             cursor: pointer;
             font-size:  18px;
@@ -87,10 +74,9 @@
             transform-origin: top;
             transform-style: preserve-3d;
             transform: perspective(111px) rotateX(-3deg);
-            color: rgba(200,0,0,1);
+            color: rgb(0, 177, 200);
             font-family: 'Outfit';
             letter-spacing: 7px;
-            animation: neon 1.5s infinite;
         }
 
         #elformulario{
@@ -113,15 +99,5 @@
     </div>
     
 </body>
-<script>
-   /* document.addEventListener('mousemove',e=>{
-        if(e.clientX <= (window.innerWidth)/5 && e.clientX > 10){
-            document.querySelector('body').style.transform="perspective(400px) rotateY(-18deg)";
-        }else{
-            if(e.clientX > window.innerWidth - (window.innerWidth/5) && e.clientX < window.innerWidth - 10){
-                document.querySelector('body').style.transform="perspective(400px) rotateY(18deg)";
-            }else document.querySelector('body').style.transform="perspective(400px) rotateY(-0deg)";
-        }
-    });*/
-</script>
+
 </html>
