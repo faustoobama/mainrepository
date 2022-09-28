@@ -43,7 +43,7 @@
             margin: 0 auto;
             min-height: 60px;
         }
-        #cadena{
+        .formInput{
             font-family: Spectral;
             display: block;
             width: calc(100% - 12px);
@@ -52,7 +52,10 @@
             font-size:  18px;
             background: white;
             transform: translateZ(15px);
+            margin: 10px 0;
+            outline: none;
         }
+
         #enviar{
             display: block;
             margin: 10px 0;
@@ -93,28 +96,18 @@
         #elformulario{
             margin-top: 25px;
         }
-        #captions{
-            height: auto;
-            color: white;
-            font-size: 18px;
-            font-family: 'Outfit';
-            text-shadow: 2px 2px 8px rgba(255,0,0,0.9)
-        }
-        .thebody{
-            padding: 10px;
-        }
         
     </style>
 </head>
 
 <body>
     <h2 id="Title">CARTA DE RECOMENDACION</h2>
-    <div class="cont  thebody" id="elformulario">
+    <div class="cont" id="elformulario">
         <form action="./cartarecom.php" method="get">
-            <input type="text" name="nombre" id="nombre" placeholder="Introduce la cadena" value="">
-            <input type="text" name="empresa" id="empr" placeholder="Introduce la cadena" value="">
-            <input type="text" name="representante" id="repres" placeholder="Introduce la cadena" value="">
-            <input type="date" name="fecha" id="fecha">
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre del empleado" value="" class="formInput">
+            <input type="text" name="empresa" id="empr" placeholder="Nombre de la empresa" value="" class="formInput">
+            <input type="text" name="representante" id="repres" placeholder="Representante legal de la empresa" value="" class="formInput">
+            <input type="date" name="fecha" id="fecha" class="formInput">
             <input type="submit" value="ENVIAR" id="enviar">
         </form>
     </div>
