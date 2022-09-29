@@ -91,10 +91,12 @@ function printHorario(){
             text-align: center;
         }
         table{
+            color: #00000099;
             box-shadow: 0 0 10px grey;
             border-collapse: collapse;
             width: 1000px;
-            height: 340px;
+            height: 350px;
+            margin: 80px auto;
         }
         td{
             padding: 10px 60px;
@@ -102,7 +104,7 @@ function printHorario(){
             height: 25px;
             border: 3px solid white;
         }
-        .lyellow{background: #FFF79CFF;}
+        .lyellow{background: #FFFFB8FF;}
         .yellow{background: #FFF370FF;}
         .blue{background: #78C6FFFF;}
         .pink{background: #FF8FE6FF;}
