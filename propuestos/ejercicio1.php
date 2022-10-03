@@ -30,6 +30,7 @@ $comida = [
 function tutear($e){
     return ($e[1] == 1)? "Señor $e[0]": "Señora $e[0]";
 }
+
 function calcCalorias($carreo, $e)
 {
     $calorias = $e[1]*$e[2];
@@ -39,14 +40,50 @@ function calcCalorias($carreo, $e)
     return $carreo;
 }
 
-// Resultado ["Señor Jorge", "Señora Bea", "Señor Paco", "Señora Amparo"];
+function listar($v,$k){
+    echo "Posicion ",${k}+1,": $v <br> ";
+}
 
-var_dump(array_map("tutear",$personas));
+function sonMujeres($v){
 
-echo "\n --------------- \n ";
+    return ($v[1] == 0);
+}
 
-// Resultado en kilocalorias
+function sonHombres($v){
 
-var_dump(array_reduce($comida, "calcCalorias")." Kalorias");
+    return ($v[1] == 1);
+}
+
+// array_map - Resultado ["Señor Jorge", "Señora Bea", "Señor Paco", "Señora Amparo"];
+
+print_r(array_map("tutear",$personas));
+
+echo "<br><br>";
+
+// Resultado en kilocalorias - array_reduce
+
+print(array_reduce($comida, "calcCalorias")." Kalorias");
+
+echo "<br><br>";
+
+// Listado de personas con arary_walk
+
+array_walk(array_map("tutear",$personas),"listar");
+
+echo "<br><br>";
+
+// Listado de Mujeres con arary_filter
+
+echo "Mujeres: <br>";
+
+print_r(array_filter($personas,"sonMujeres"));
+
+echo "<br><br>";
+
+// Listado de Hombres con arary_filter
+
+echo "Hombrers: <br>";
+
+print_r(array_filter($personas,"sonHombres"));
 
 ?>
