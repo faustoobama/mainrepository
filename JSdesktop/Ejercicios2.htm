@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios 2</title>
+</head>
+<body>
+    <div class="cont">
+        <h3>Nombre e email</h4>
+    </div>
+    
+    <div class="cont">
+        <h3>Área de la circunsferencia</h3>
+        <label for="">Indique el radio de la circunferencia</label> <br>
+        <input type="number" name="radio" id="radio">
+        <input type="button" value="Calcualr" id="boton">
+        <div id="result"></div>
+    </div>
+    <div class="cont">
+        <h3>La edad no importa</h3>
+
+        <h5 id="suma"></h5>
+        <h5 id="producto"></h5>
+
+    </div>
+    <div class="cont">
+        <h3>Perimetro del cuadrado</h3>
+        <h4 id="perim"></h4>
+    </div>
+    <div class="cont">
+        <h3>Haciendo la compra</h3>
+        <h5 id="prec"></h5>
+        <h5 id="cant"></h5>
+        <h5 id="total"></h5>
+    </div>
+</body>
+<script>
+    let nombre = prompt("Introduzca su nombre: "),
+        mail = prompt("Introduzca una dirección de correo válida: "),
+        boton = document.querySelector('#boton'),
+        edades=[],
+        perim = document.getElementById('perim'),
+        prec = document.getElementById('prec'),
+        cant = document.getElementById('cant');
+
+    document.getElementsByClassName("cont")[0].insertAdjacentHTML('beforeend', `
+    <h5>Nombre: ${nombre} </h5>
+    <h5>Correo: ${mail} </h5>
+    `);
+    boton.addEventListener('click',()=>{
+        let radio = parseInt(document.getElementById('radio').value) * parseInt(document.getElementById('radio').value) * 3.14;
+        document.getElementById('result').innerText = "El área es de "+radio+ " u²";
+    });
+
+    let suma = document.querySelector('#suma'),
+        producto = document.querySelector('#producto');
+
+    for(i=0;i<4;i++){
+        edades[i] = parseInt(prompt("Ingrese la edad del individuo "+(i+1)));
+    }
+
+    edades.sort();
+    suma.innerText = "La suma de "+edades[0]+" y "+edades[edades.length -1]+" es: "+(edades[0] + edades[edades.length - 1]);
+    producto.innerText = "El producto de "+edades[1]+" y "+edades[edades.length -2]+" es: "+(edades[1] * edades[edades.length - 2]);
+
+    let lado = parseInt(prompt("Ingrese la longitud del lado del cuadrado"));
+    perim.innerText = "El perímetro del cuadrado con lado "+lado+" cm, es de: "+(lado*4)+" cm";
+
+    let precUnidad = parseInt(prompt("Introduzca el precio del producto: "));
+    let cantUnidad = parseInt(prompt("Introduzca la cantidad de productos: "));
+
+    prec.innerText = "Precio por unidad "+precUnidad+" Euritos";
+    cant.innerText = "Unidades compradas "+cantUnidad;
+    document.getElementById('total').innerText = "El total a pagar es de "+(precUnidad*cantUnidad)+" Euritos";
+</script>
+</html>
