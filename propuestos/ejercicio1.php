@@ -41,7 +41,7 @@ function calcCalorias($carreo, $e)
 }
 
 function listar($v,$k){
-    echo "Posicion ",${k}+1,": $v <br> ";
+    echo "Posicion ".($k+1).": $v <br> ";
 }
 
 function sonMujeres($v){
