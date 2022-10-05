@@ -31,8 +31,7 @@ function tutear($e){
     return ($e[1] == 1)? "Señor $e[0]": "Señora $e[0]";
 }
 
-function calcCalorias($carreo, $e)
-{
+function calcCalorias($carreo, $e){
     $calorias = $e[1]*$e[2];
 
     $carreo += $calorias;
