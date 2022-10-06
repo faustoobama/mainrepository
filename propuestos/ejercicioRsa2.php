@@ -23,9 +23,5 @@ $resultBusqueda = array_search(1,$coincidencias);
 
 print("El valor se encuentra en el indice: ".$resultBusqueda);
 
-
-
-
-
-
 ?>
+
