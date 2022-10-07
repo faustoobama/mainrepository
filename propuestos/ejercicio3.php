@@ -14,25 +14,34 @@
         "pizza_jamon_serrano" => 2.59,
         "helado_chocolate" => 2.99
     ];
+    $total = [];
 
     function imprimirTienda(){
         global $productos;
-
+        echo "<tr><td class='producto'>Productos</td><td>Precio</td><td class='cantidad'>Cantidad</td></tr>";
         array_walk($productos, function($v,$k){
-            echo "<tr><td class='producto'>$k</td><td class='price'>$v</td><td class='cantidad'><input class='price' type='number' name='cant$k'></td></tr>";
+            echo "<tr><td class='producto'>$k</td><td>$v</td><td class='cant'><input class='cant2' type='number' name='cant$k'></td></tr>";
         });
         
-        echo "<input type='submit' name='enviar'>";
     }
 
     function imprimirFactura(){
         global $productos;
-
-        array_walk($productos, function($v,$k){
-            echo "<tr><td class='producto'> $k </td><td class='price'>".$_GET["cant$k"]."</td class='producto'> <td class='price''>".$_GET["cant$k"]*$v."</td></tr>";
-        });
-
+        global $total;
+        if(isset($_GET['comprar'])){
+            echo "<tr><td class='producto'>Productos</td><td>Cantidad</td><td>Precio Final</td></tr>";
+            
+            array_walk($productos, function($v,$k){
+                global $total;
+                if(isset($_GET["cant$k"]) && intval($_GET["cant$k"]) != 0){
+                    echo "<tr><td class='producto'> $k </td><td>".$_GET["cant$k"]."</td class='producto'> <td>".intval($_GET["cant$k"])*intval($v)."</td></tr>";
+                    array_push($total,intval($_GET["cant$k"])*intval($v));
+                }
+            });
+            echo "<tr><td colspan='2'> PRECIO TOTAL </td><td>".array_sum($total)."</td></tr>";
+        }
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -43,31 +52,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haciendo la compra</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .cont{
+            width: 400px;
+            height: auto;
+            margin: 20px auto;
+        }
         table{
+            width: 100%;
             border-collapse: collapse;
         }
         td{
+            padding: 2px;
             border: 1px solid black;
         }
         .producto{
-            width: 150px;
+            width: 40%;
         }
-        .price{
-            width: 60px;
+        .cant{
+            width: 30%;
+        }
+        .cant2{
+            width: calc(100% - 4px);
+        }
+        #comprar{
+            margin: 10px 0;
+            width: 100%;
+            height: 30px;
         }
     </style>
 </head>
 <body>
-    <table>
-        <form action="" method="GET">
-            <?php imprimirTienda(); ?>
-        </form>
-    </table>
+    <div class="cont">
+    <form action="" method="GET">
+        <table><?php imprimirTienda(); ?></table>
+        <input type='submit' name='comprar' id='comprar' value='Ver Factura'>
+    </form>
+    </div>
 
+    <div class="cont">
     <table>
             <?php imprimirFactura(); ?>
 
     </table>
+    </div>
     
 </body>
 </html>
