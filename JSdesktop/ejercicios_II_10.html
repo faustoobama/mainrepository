@@ -18,17 +18,18 @@
     }while(isNaN(valor));
     do{
         divisa = prompt("Indique la divisa: (E: euros, S: Dólares, L: Libras): ").toLocaleLowerCase();
-    }while(divisa.toLowerCase() != "l" && divisa.toLowerCase() != "s" && divisa.toLowerCase() != "e");   
+    }while(divisa != "l" && divisa != "s" && divisa != "e" && divisa != "y");   
 
     document.write("Resultado: <br>");
 
     resultado = {
-        dolares: (divisa == "d")?valor+" $":(divisa == "e")?valor*0.97+" $":valor*1.10+" $",
-        euros: (divisa == "d")?valor*1.03+" €":(divisa == "e")?valor+" €":valor*1.14+" €",
-        libras: (divisa == "d")?valor*0.91+" £":(divisa == "e")?valor*0.88+" £":valor+" £"
+        dolares: (divisa == "d")?valor+" $":(divisa == "e")?valor*0.97+" $":(divisa == "l")?valor*1.10+" $":valor+" $",
+        euros: (divisa == "d")?valor*1.03+" €":(divisa == "e")?valor+" €":(divisa == "l")?valor*1.14+" €":valor+" €",
+        libras: (divisa == "d")?valor*0.91+" £":(divisa == "e")?valor*0.88+" £":(divisa == "l")?valor+" £":valor+" £",
+        yenes: (divisa == "d")?valor*0.91+" ¥":(divisa == "e")?valor*0.88+" ¥":(divisa == "l")?valor+" ¥":valor+" ¥"
     }
 
-    document.write(resultado.dolares+" <br>"+resultado.euros+"<br>"+resultado.libras);
+    document.write(resultado.dolares+" <br>"+resultado.euros+"<br>"+resultado.libras+"<br>"+resultado.yenes);
         
 
 </script>
