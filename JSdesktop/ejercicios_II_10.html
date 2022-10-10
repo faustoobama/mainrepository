@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio II</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // Tabla de conversion de divisas
+
+    let valor, divisa, resultado;
+    do{
+        valor = prompt("Introduzca la cantidad: ");
+    }while(isNaN(valor));
+    do{
+        divisa = prompt("Indique la divisa: (E: euros, S: Dólares, L: Libras): ").toLocaleLowerCase();
+    }while(divisa.toLowerCase() != "l" && divisa.toLowerCase() != "s" && divisa.toLowerCase() != "e");   
+
+    document.write("Resultado: <br>");
+
+    resultado = {
+        dolares: (divisa == "d")?valor+" $":(divisa == "e")?valor*0.97+" $":valor*1.10+" $",
+        euros: (divisa == "d")?valor*1.03+" €":(divisa == "e")?valor+" €":valor*1.14+" €",
+        libras: (divisa == "d")?valor*0.91+" £":(divisa == "e")?valor*0.88+" £":valor+" £"
+    }
+
+    document.write(resultado.dolares+" <br>"+resultado.euros+"<br>"+resultado.libras);
+        
+
+</script>
+</html>
