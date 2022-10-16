@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio II</title>
+    <title>Ejercicio II - 8</title>
 </head>
 <body>
     
@@ -12,9 +12,9 @@
 <script>
     // Tabla de conversion de temperaturas
 
-    let valorBase = prompt("Introduzca el valor de la temperatura: "),
+    let valorBase = parseInt(prompt("Introduzca el valor de la temperatura: ")),
         medida = prompt("Indique la escala de temperatura: (F: Fahrenheit, C: Celcius)"),
-        resultado = (medida.toLowerCase() == "c")?((valorBase * 9/5) + 32)+" Grados Fahrenheit":((valorBase - 32) * 5/9)+" Grados Celcius";
+        resultado = (medida.toLowerCase() == "c")?((valorBase * 9/5) + 32).toFixed(2)+" Grados Fahrenheit":((valorBase - 32) * 5/9).toFixed(2)+" Grados Celcius";
 
         document.write("El resultado de "+valorBase+" Grados "+((medida.toLowerCase() == "c")?"Celcius":"Fahrenheid")+" es de "+resultado);
 

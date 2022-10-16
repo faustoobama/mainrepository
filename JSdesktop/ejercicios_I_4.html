@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio I - 4</title>
+</head>
+<body>
+    <h3>Ejercicio I - 4 Numero entre 0 y 9999, y verificar si es capicua</h3>
+</body>
+<script>
+    'use strict';
+
+    // Numero entre 0 y 9999, y verificar si es capicua
+
+    alert('Numero entre 0 y 9999, y verificar si es capicua');
+
+    let potencialCapicua,indice = 0;
+    
+    do{
+        potencialCapicua = prompt("Introduzca el número: ");
+    }while(potencialCapicua.length > 4 || parseInt(potencialCapicua) < 0);
+
+
+    do{
+        
+        if(!(potencialCapicua[indice] == potencialCapicua[potencialCapicua.length -1 -indice])){
+
+            console.log("El número "+potencialCapicua+" no es capicua");
+            alert("El número "+potencialCapicua+" no es capicua");
+
+        }else if(indice == Math.trunc(potencialCapicua.length/2) -1){
+
+            console.log("El número "+potencialCapicua+" es capicua");
+            alert("El número "+potencialCapicua+"es capicua");
+        }
+        
+        indice++
+    }
+    while(potencialCapicua[indice] == potencialCapicua[potencialCapicua.length -1 -indice] && indice < Math.trunc(potencialCapicua.length/2));
+    
+</script>
+</html>

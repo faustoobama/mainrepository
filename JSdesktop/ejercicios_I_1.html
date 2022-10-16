@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio I - 1</title>
+</head>
+<body>
+    <h3>Ejercicio I - 1 Orden de numeros de Mayor a Menor</h3>
+</body>
+<script>
+    'use strict';
+
+    // Orden de numeros de Mayor a Menor
+
+    alert('Orden de numeros de Mayor a Menor');
+
+    let numeros = [];
+
+    for(let i=0; i<3; i++){
+        numeros[i] = parseInt(prompt("Introduzca el "+(i==0)?"Primer número: ":(i==1)?"Segundo número: ":"último número"));
+    }
+    numeros.sort((a,b)=> b - a);
+
+    console.log(numeros);
+
+    alert('Los numeros introducidos, ordenados de mayor a menor son: \n'+numeros.toString());
+</script>
+</html>

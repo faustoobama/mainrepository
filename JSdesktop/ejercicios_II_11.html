@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio II - 11</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // Piensa en un numero
+
+    let adivina, numero, repetidos=[],proseguir=true;
+    alert("Piensa en un n'umero del 0 al 9 ... ");
+    do{
+        do{
+            numero = Math.trunc(Math.random()*10);
+        }while(repetidos.includes(numero) && repetidos.length < 10);
+
+        repetidos.push(numero);
+
+        adivina = prompt("Es el "+numero+" el numero en el que pensaste? (S, n)").toLowerCase();
+        (adivina == 's')?(proseguir=false,alert(`Numero ${numero} adivinado!`)):proseguir=true;
+    }while(proseguir && repetidos.length < 10);
+</script>
+</html>
