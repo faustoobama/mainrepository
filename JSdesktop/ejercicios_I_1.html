@@ -14,16 +14,19 @@
 
     // Orden de numeros de Mayor a Menor
 
-    alert('Orden de numeros de Mayor a Menor');
+    alert('Orden de numeros de Mayor a Menor'); // Mensaje inicial y enunciado. Anuncia el inicio del programa
 
-    let numeros = [];
+    let numeros = []; // arreglo en el que se ira insertado numeros
 
     for(let i=0; i<3; i++){
-        numeros[i] = parseInt(prompt("Introduzca el "+(i==0)?"Primer número: ":(i==1)?"Segundo número: ":"último número"));
+        // Almacenamos los nuemeros. el operador ternario mostrara un mensaje u otro en funcion del valor de la variable 'i'
+        numeros[i] = parseInt(prompt("Introduzca el "+((i==0)?"Primer número: ":(i==1)?"Segundo número: ":"último número")));
     }
-    numeros.sort((a,b)=> b - a);
+    numeros.sort((a,b)=> b - a); // ordenamos el array de mayor a menor (b - a)
 
-    console.log(numeros);
+    console.log(numeros); // mostramos el arary por consola
+
+    // mostramos el arary mediante un  panel
 
     alert('Los numeros introducidos, ordenados de mayor a menor son: \n'+numeros.toString());
 </script>

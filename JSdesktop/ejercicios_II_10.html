@@ -5,32 +5,82 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio II - 10</title>
+    <style>
+        .cont{
+            margin: 0 auto;
+            width: 230px;
+            display: flex;
+            flex-direction: column;
+        }
+        #convertir{
+            margin-top: 15px;
+        }
+        label{
+            font-size: 13px;
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
-    
+    <form class="cont" id="form">
+        <h3>Conversion de divisas</h3>
+        <label for="valor">Valor a convertir</label> 
+        <input type="text" name="valor" id="valor" required> 
+        <label for="">Moneda:</label>
+        <select name="divisa" id="divisa">
+            <option value="euros">Euros</option>
+            <option value="dolares">Dolares</option>
+            <option value="libras">Libras</option>
+            <option value="yenes">Yenes</option>
+        </select>
+        <label for="">Convertir a:</label>
+        <select name="divisa" id="_divisa">
+            <option value="euros">Euros</option>
+            <option value="dolares">Dolares</option>
+            <option value="libras">Libras</option>
+            <option value="yenes">Yenes</option>
+        </select>
+        <input type="submit" value="Convertir" id="convertir">
+    </form>
 </body>
 <script>
     // Tabla de conversion de divisas
-
-    let valor, divisa, resultado;
-    do{
-        valor = prompt("Introduzca la cantidad: ");
-    }while(isNaN(valor));
-    do{
-        divisa = prompt("Indique la divisa: (E: euros, S: Dólares, L: Libras): ").toLocaleLowerCase();
-    }while(divisa != "l" && divisa != "s" && divisa != "e" && divisa != "y");   
-
-    document.write("Resultado: <br>");
-
-    resultado = {
-        dolares: (divisa == "d")?valor+" $":(divisa == "e")?valor*0.97+" $":(divisa == "l")?valor*1.10+" $":valor+" $",
-        euros: (divisa == "d")?valor*1.03+" €":(divisa == "e")?valor+" €":(divisa == "l")?valor*1.14+" €":valor+" €",
-        libras: (divisa == "d")?valor*0.91+" £":(divisa == "e")?valor*0.88+" £":(divisa == "l")?valor+" £":valor+" £",
-        yenes: (divisa == "d")?valor*0.91+" ¥":(divisa == "e")?valor*0.88+" ¥":(divisa == "l")?valor+" ¥":valor+" ¥"
+    let form=document.querySelector('#form'); // selecionamos el formaulario mediante el DOM
+    function conversion(){ // creamos una funcion para hacer la conversion
+        let valor=parseFloat(document.querySelector('#valor').value.replace(',','.')), // guardamos el valor del input de valores
+        divisa=document.querySelector('#divisa').value, // guardamos el valor de la divisa inicial
+        _divisa=document.querySelector('#_divisa').value; // guardamos el valor de la divisa final
+        // definimos un objeto con todas las posibilidades
+        let operador ={
+            euros: {
+                euros: valor,
+                dolares: valor*0.97,
+                libras: valor*0.86,
+                yenes: valor*144
+            },
+            dolares: {
+                euros: valor*1.027,
+                dolares: valor,
+                libras: valor*0.889,
+                yenes: valor*148.62
+            },
+            libras: {
+                euros: valor*1.155,
+                dolares: valor*1.124,
+                libras: valor,
+                yenes: valor*1667.14
+            },
+            yenes: {
+                euros: valor*0.0069,
+                dolares: valor*0.0067,
+                libras: valor*0.0059,
+                yenes: valor
+            }
+        };
+        // la funcion devolvera un mensajes en un banner con el resultado en funcion de la divisa inicial y final elejidos
+        alert(valor+' '+divisa+' equivalen a: '+operador[divisa][_divisa].toFixed(2)+' '+_divisa);
     }
-
-    document.write(resultado.dolares+" <br>"+resultado.euros+"<br>"+resultado.libras+"<br>"+resultado.yenes);
-        
-
+    // le agregamos un evento al formulario, de forma que al enviarse, se verifique que los valores fueron rellenados
+    form.addEventListener('submit',()=>conversion()); // cuando se envie el formulario, se ejecutara la funcion conversion
 </script>
 </html>
