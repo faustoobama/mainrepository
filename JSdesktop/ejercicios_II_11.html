@@ -18,16 +18,16 @@
     */
 
     let pregunta, numero, repetidos=[],proseguir=true;
-    alert("Piensa en un numero del 0 al 9 ... "); // Mensaje de inicio del programa
+    alert("Piensa en un numero del 1 al 100 ... "); // Mensaje de inicio del programa
     do{
         do{
-            numero = Math.trunc(Math.random()*10); // se genera un numero aleatorio para ver si coinciden con el pensado
-        }while(repetidos.includes(numero) && repetidos.length < 10); // si ya se pregunto por el numero, se repite el proceso, para no repetir numeros
+            numero = Math.trunc(Math.random()*100 + 1); // se genera un numero aleatorio para ver si coinciden con el pensado
+        }while(repetidos.includes(numero) && repetidos.length < 100); // si ya se pregunto por el numero, se repite el proceso, para no repetir numeros
 
         repetidos.push(numero); // una vez generado el numero, se le agraga al arreglo, para el bucle anterior lo descarte al generar un numero nuevo
 
         pregunta = prompt("Es el "+numero+" el numero en el que pensaste? (S, n)").toLowerCase(); // guardamos la respuesta del usuario respecto a si coincide con el numero pensado
         (pregunta == 's')?(proseguir=false,alert(`Numero ${numero} adivinado!`)):proseguir=true; // si coincide, se muestra un mensaje y se para el programa, si no, se repite el bucle
-    }while(proseguir && repetidos.length < 10); // como son 10 numeros, el bucle se detiene al preguntar por los 10 numeros, o hasta que el usuario indique que se adivino el numero
+    }while(proseguir && repetidos.length < 100); // como son 100 numeros, el bucle se detiene al preguntar por los 100 numeros, o hasta que el usuario indique que se adivino el numero
 </script>
 </html>

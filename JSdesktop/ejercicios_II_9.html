@@ -21,18 +21,18 @@
 </body>
 <script>
     // Tabla de conversion de temperaturas
-    alert("Tabla de cpmversion de temperatura v2"); // mensaje inical del programa
+    alert("Tabla de comversion de temperatura v2"); // mensaje inical del programa
     let valorBase, medida; // varible para la temperatura y la escala inicial
-    document.write("<table><tr><td>Temp Base</td><td>Celcius</td><td>Fahrenheit</td></tr>"); // imprimimos la cabecera de la tabla
+    document.write("<table><tr><td>Temp Base</td><td>Celsius</td><td>Fahrenheit</td></tr>"); // imprimimos la cabecera de la tabla
     do{
         valorBase = prompt("Introduzca el valor de la temperatura: "); // almacenamos el valor base
         if(!(isNaN(valorBase))){ // comprobamos que el valor base sea un numero
              
-            do{
+            do{// Se repite la asignacion de escala en caso de no ser ni 'c' ni 'f' ni 'SALIR'
                 medida = prompt("Introduzca la escala de Temperatura: "); // almacenamos la escala de temperatura inicial
-            }while(medida.toLowerCase() != "c" && medida.toLowerCase() != "f"); // Se repite la asignacion de escala en caso de no ser ni 'c' ni 'f'
+            }while(medida.toLowerCase() != "c" && medida.toLowerCase() != "f" && medida.toLowerCase() != "salir");
         
-            if(medida == 'c'){ // Caso en el que el valor base esta en grados Celcius
+            if(medida == 'c'){ // Caso en el que el valor base esta en grados Celsius
                 resF = ((valorBase * 9/5) + 32).toFixed(2);
                 resC = valorBase;
                 // Imprimimos la tabla con los resultados
@@ -44,11 +44,8 @@
                 document.write("<tr><td>"+valorBase+" "+medida.toUpperCase()+"</td><td>"+resC+" C</td><td>"+resF+" F</td></tr>");
             }
 
-        }else if(valorBase.toLowerCase() !="salir"){ // si el valor base no es un numero ni la palabra 'salir', se imprime una fila sin conversiones
-            document.write("<tr><td colspan='3'>Valor base no valido</td></tr>"); // Impresionde fila con un texto personalizado
-        }
-    }while(valorBase.toLowerCase() != "salir"); // condicion para seguir iterando
+        }else document.write("<tr><td colspan='3'>Valor base no valido</td></tr>"); // Impresionde fila con un texto personalizado
+    }while(medida.toLowerCase() != "salir"); // condicion para seguir iterando
     document.write("</table>"); // impresion de cierre de tabla
-
 </script>
 </html>
