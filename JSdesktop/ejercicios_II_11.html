@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio II - 11</title>
+</head>
+<body></body>
+<script>
+    // Piensa en un numero
+
+    /* Variables 
+       para el resultado de la pregunta, 
+       para el numero aleatorio a preguntar, 
+       para controlar la iteracion del bucle y
+       para los numeros ya preguntados (esto para evitar preguntar varias veces por el mismo numero) 
+    */
+
+    let pregunta, numero, repetidos=[],proseguir=true;
+    alert("Piensa en un numero del 0 al 9 ... "); // Mensaje de inicio del programa
+    do{
+        do{
+            numero = Math.trunc(Math.random()*10); // se genera un numero aleatorio para ver si coinciden con el pensado
+        }while(repetidos.includes(numero) && repetidos.length < 10); // si ya se pregunto por el numero, se repite el proceso, para no repetir numeros
+
+        repetidos.push(numero); // una vez generado el numero, se le agraga al arreglo, para el bucle anterior lo descarte al generar un numero nuevo
+
+        pregunta = prompt("Es el "+numero+" el numero en el que pensaste? (S, n)").toLowerCase(); // guardamos la respuesta del usuario respecto a si coincide con el numero pensado
+        (pregunta == 's')?(proseguir=false,alert(`Numero ${numero} adivinado!`)):proseguir=true; // si coincide, se muestra un mensaje y se para el programa, si no, se repite el bucle
+    }while(proseguir && repetidos.length < 10); // como son 10 numeros, el bucle se detiene al preguntar por los 10 numeros, o hasta que el usuario indique que se adivino el numero
+</script>
+</html>

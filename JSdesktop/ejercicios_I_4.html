@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio I - 4</title>
+</head>
+<body>
+    <h3>Ejercicio I - 4 Numero entre 0 y 9999, y verificar si es capicua</h3>
+</body>
+<script>
+    'use strict';
+
+    // Numero entre 0 y 9999, y verificar si es capicua
+
+    alert('Numero entre 0 y 9999, y verificar si es capicua'); // Mensaje inicial y enunciado. Anuncia el inicio del programa
+
+    let potencialCapicua,indice = 0; // definimos la variable correspondiente al numero y un iterador que nos indicara el momento en el que se hayan comparado todos los extremos
+    
+    do{
+        potencialCapicua = prompt("Introduzca el número: "); // Almacenamos el numero en la variable
+    }while(potencialCapicua.length > 4 || parseInt(potencialCapicua) < 0); // si el numero tiene mas de 4 digitos o es menor a 0, solicitara que se ingrese de nuevo
+
+    //En el siguiente apartado, definiremos un bucle que se repite hasta comprobar los digitos en cada extremo del numer; o cuando se detecten digitos en extremos, que no coincidan
+
+    do{
+        if(!(potencialCapicua[indice] == potencialCapicua[potencialCapicua.length -1 -indice])){ // Si los extremos no son similares, se muestra el mensaje y se acaba el bucle
+
+            console.log("El número "+potencialCapicua+" no es capicua");
+            alert("El número "+potencialCapicua+" no es capicua");
+        // Si se han comparado todos los numeros y el indice esta al limite, quiere decir que todos los digitos anteriores eran similares, por lo que es capicua
+        }else if(indice == Math.trunc(potencialCapicua.length/2) -1){ 
+
+            console.log("El número "+potencialCapicua+" es capicua");
+            alert("El número "+potencialCapicua+" es capicua");
+        }
+        indice++
+    }
+    while(potencialCapicua[indice] == potencialCapicua[potencialCapicua.length -1 -indice] && indice < Math.trunc(potencialCapicua.length/2)); // condicion del bucle
+    
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios 3.1 - 2</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // nota de los alumnos y media de la clase
+    let numAlumnos,
+        Alumno = {
+            nombre: "",
+            nota: null,
+            nuevoAlumno: function(name,score){
+                this.nombre = name;
+                this.nota = score;
+            }
+        };
+    do{
+        numAlumnos = parseInt(prompt("Indique el número de alumnos: (entre 8 y 20)"));
+    }while(numAlumnos > 20 || numAlumnos < 8);
+
+    function mediaAlumnosClase(num){
+        let resultado = [];
+        for(let i=0;i<num;i++){
+    
+            resultado[i] = Alumno.nuevoAlumno("Pedro",i);
+        }
+        return resultado;
+    }
+</script>
+</html>

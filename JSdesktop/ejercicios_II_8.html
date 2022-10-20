@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio II - 8</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            margin: 50px auto;
+        }
+        td{
+            border: 1px solid black;
+            text-align: center;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>   
+</body>
+<script>
+    // Tabla de conversion de temperaturas
+    alert("Tabla de temperaturas"); // mensaje inical del programa
+    let valorBase = parseInt(prompt("Introduzca el valor de la temperatura: ")), // Almacenamos el valor base
+        // determinamos la medida o escala de temperatura inicial
+        medida = prompt("Indique la escala de temperatura: (F: Fahrenheit, C: Celcius)").toLowerCase(),
+        resC,resF; // varialbles para almacenar las conversiones finales
+        if(medida == 'c'){ // Caso en el que el valor base esta en grados Celcius
+            resF = ((valorBase * 9/5) + 32).toFixed(2);
+            resC = valorBase;
+            // Imprimimos la tabla con los resultados
+            document.write(`
+                <table>
+                <tr><td>Valor de partida</td><td>Grados Celcius</td><td>Grados Fahrenheit</td></tr>
+                <tr><td>${valorBase} `+medida.toUpperCase()+`</td><td>${resC} C</td><td>${resF} F</td></tr>
+                </table>`);
+        }else if(medida == 'f'){ // Caso en el que el valor base esta en grados Fahrenheit
+            resC = ((valorBase - 32) * 5/9).toFixed(2);
+            resF=valorBase;
+            // Imprimimos la tabla con los resultados
+            document.write(`
+                <table>
+                <tr><td>Valor de partida</td><td>Grados Celcius</td><td>Grados Fahrenheit</td></tr>
+                <tr><td>${valorBase} `+medida.toUpperCase()+`</td><td>${resC} C</td><td>${resF} F</td></tr>
+                </table>`);
+
+        }else{ // Si no se introduce escala de temperatura, nos devuelve el mensaje de error.
+            document.write("No se introdujo una escala de temperatura correcta");
+        }
+
+</script>
+</html>

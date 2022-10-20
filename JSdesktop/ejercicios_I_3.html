@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio I - 3</title>
+</head>
+<body>
+    <h3>Ejercicio I - 3 Numero entre 0 y 9999, y mostrarlo invertido</h3>
+</body>
+<script>
+    'use strict';
+
+    // Numero entre 0 y 9999, y mostrarlo invertido
+    alert('Numero entre 0 y 9999, y mostrarlo invertido'); // Mensaje inicial y enunciado. Anuncia el inicio del programa
+
+    let numero,inversoNumero=""; // Definimos las variables para el numero y su invierso
+
+    do{
+        numero = prompt("Introduzca el número: "); // almacenamos el numero
+    }while(numero.length > 4 || parseInt(numero) < 0); // si el numero tiene mas de 4 digitos o es menor a 0, solicitara que se ingrese de nuevo
+
+    for(let i=numero.length -1; i>=0; i--){ // recorremos cada digito del numero, pero a la inversa
+        inversoNumero+=numero[i]; // almacenamos en la variable del inverso, los digitos en orden inverso
+    }
+
+    console.log("El número "+numero+" invertido, sería "+inversoNumero); // Mostramos el resultado por consola.
+
+    alert("El número "+numero+" invertido, sería "+inversoNumero); // Mostramos el resultado medianre un panel.
+</script>
+</html>
