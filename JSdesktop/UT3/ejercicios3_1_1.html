@@ -4,19 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios 3.1 - 1</title>
+    <title>Ejercicio 1</title>
     <style>
-        #cont{
-            margin: 50px auto;
-            width: 400px;
-            height: auto;
+        #horaLive{
+         width: 200px;
+         height: fit-content;   
+         font-size: 30px;
+         padding: 10px;
+         border: 2px dashed rgb(62, 62, 62);
+         color: rgb(63, 63, 63);
+         margin: 80px auto 20px auto;
+         text-align: center;
+        }
+        #formato{
+            display: block;
+            margin: 0px  auto;
+            width: 220px;
+            height: 40px; 
+            text-align: center;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
-    <div id="cont"></div>
+    <div id="horaLive"></div>
+
+    <select name="formato" id="formato">
+        <option value="detallado"> 24 H</option>
+        <option value="UK">AM - PM</option>
+    </select>
 </body>
 <script>
+    
+    function mostrarReloj (){
+        let hora = new Date(),
+        formato = document.querySelector('#formato').value
+        reloj = document.querySelector('#horaLive');
 
+        switch(formato){
+            case "UK":
+            reloj.innerText = ((hora.getHours() > 12)?(hora.getHours() - 12):hora.getHours())+":"+hora.getMinutes()+((hora.getHours() < 12)?" am ":" pm ");
+            break;
+            case "detallado":
+            reloj.innerText = hora.getHours()+":"+hora.getMinutes()+":"+hora.getSeconds()+" h";
+            break;
+        }
+        
+    }
+    setInterval(()=>{
+        mostrarReloj();},500);
 </script>
 </html>
