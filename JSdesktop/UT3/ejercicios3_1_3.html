@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <style>
+        #horaLive{
+         width: fit-content;
+         height: fit-content;   
+         font-size: 30px;
+         padding: 15px 10px;
+         border: 2px dashed grey;
+         color: grey;
+        }
+        #Hora{
+            width: 400px;
+            height: 100px;
+            font-size: 30px;
+            border: 1px solid black
+        }
+    </style>
+</head>
+<body>
+    <div id="horaLive"></div>
+    <div id="Hora"></div>
+    <form id="formHora">
+        <input type="text" name="hora" id="hora">
+        <input type="submit" value="mostrar">
+    </form>
+</body>
+<script>
+    let form = document.querySelector('form'),
+    horaVal,
+    Hora = document.querySelector('#Hora'),
+    horaFinal;
+    form.addEventListener('submit',()=>{
+        horaVal = document.querySelector('hora').value;
+        switch(horaVal.split(':').length){
+            case 3:
+                horaFinal = new Date();
+                break;
+            case 2:
+                horaFinal = new Date();
+                break;
+            case 1:
+                horaFinal = new Date();
+            break;
+        };
+        document.querySelector('#Hora').innerText = "horaFinal";
+    
+    });
+
+
+    function reloj (){
+        let hora = new Date();
+        let reloj = document.querySelector('#horaLive');
+        reloj.innerText = "Hora: "+hora.getHours()+":"+hora.getMinutes()+":"+hora.getSeconds();
+    }
+    setInterval(()=>{
+        reloj();
+    },500);
+</script>
+</html>
