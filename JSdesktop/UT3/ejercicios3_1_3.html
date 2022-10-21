@@ -7,57 +7,50 @@
     <title>Ejercicio 1</title>
     <style>
         #horaLive{
-         width: fit-content;
+         width: 200px;
          height: fit-content;   
          font-size: 30px;
-         padding: 15px 10px;
-         border: 2px dashed grey;
-         color: grey;
+         padding: 10px;
+         border: 2px dashed rgb(62, 62, 62);
+         color: rgb(63, 63, 63);
+         margin: 80px auto 20px auto;
+         text-align: center;
         }
-        #Hora{
-            max-width: 500px;
-            min-height: 100px;
-            font-size: 30px;
+        #formato{
+            display: block;
+            margin: 0px  auto;
+            width: 220px;
+            height: 40px; 
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div id="horaLive"></div>
-    <div id="Hora"></div>
-    <form id="formHora">
-        <input type="text" name="hora" id="hora">
-        <input type="button" value="mostrar" id="button">
-    </form>
+
+    <select name="formato" id="formato">
+        <option value="detallado"> 24-H</option>
+        <option value="UK">AM-PM</option>
+    </select>
 </body>
 <script>
-    let button = document.querySelector('#button'),
-    horaVal,
-    Hora = document.querySelector('#Hora'),
-    horaFinal;
-    button.addEventListener('click',()=>{
-        horaVal = document.querySelector('#hora').value;
-        datos = horaVal.split(':');
-        switch(datos.length){
-            case 3:
-                horaFinal = new Date(datos[0],datos[1],datos[2]);
-                break;
-            case 2:
-                horaFinal = new Date();
-                break;
-                
-        };
-        Hora.innerText = horaFinal;
     
-    });
+    function mostrarReloj (){
+        let hora = new Date(),
+        formato = document.querySelector('#formato').value
+        reloj = document.querySelector('#horaLive');
 
-
-    function reloj (){
-        let hora = new Date();
-        let reloj = document.querySelector('#horaLive');
-        reloj.innerText = "Hora: "+hora.getHours()+":"+hora.getMinutes()+":"+hora.getSeconds();
+        switch(formato){
+            case "UK":
+            reloj.innerText = ((hora.getHours() > 12)?(hora.getHours() - 12):hora.getHours())+":"+hora.getMinutes()+((hora.getHours() < 12)?" am ":" pm ");
+            break;
+            case "detallado":
+            reloj.innerText = hora.getHours()+":"+hora.getMinutes()+":"+hora.getSeconds()+" h";
+            break;
+        }
+        
     }
     setInterval(()=>{
-        reloj();
-    },500);
+        mostrarReloj();},500);
 </script>
 </html>
