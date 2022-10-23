@@ -4,38 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 1</title>
+    <title>Ejercicio 3.1 - 1</title>
     <style>
+        *{margin: 0;padding: 0;}
+        .cont{
+            margin: 50px auto;
+            width: fit-content;
+            height: fit-content;
+        }
         #horaLive{
-         width: 200px;
+        margin: 10px 0;
+         width: 300px;
          height: fit-content;   
-         font-size: 30px;
+         font-size: 60px;
          padding: 10px;
          border: 2px dashed rgb(62, 62, 62);
          color: rgb(63, 63, 63);
-         margin: 80px auto 20px auto;
          text-align: center;
         }
         #formato{
+            margin: 10px 0;
             display: block;
-            margin: 0px  auto;
-            width: 220px;
-            height: 40px; 
+            width: 324px;
+            height: fit-content; 
             text-align: center;
-            font-size: 20px;
+            font-size: 50px;
+            padding: 5px 0;
         }
     </style>
 </head>
 <body>
-    <div id="horaLive"></div>
+    <div class="cont">
+        <h1>LA HORA</h1>
+        <div id="horaLive"></div>
 
-    <select name="formato" id="formato">
-        <option value="detallado"> 24 H</option>
-        <option value="UK">AM - PM</option>
-    </select>
+        <select name="formato" id="formato">
+            <option value="detallado"> 24 H</option>
+            <option value="UK">AM - PM</option>
+        </select>
+    </div>
 </body>
 <script>
+    /*
     
+     1.- Crea un programa que muestre la hora actual, en diferentes formatos, según el valor que
+    teclee el usuario por parámetro. Ejemplo:
+            a) 14:35:07 (hora detallada con minutos y segundos)
+            b) 02:35 PM o AM
+    
+    */
     function mostrarReloj (){
         let hora = new Date(),
         formato = document.querySelector('#formato').value

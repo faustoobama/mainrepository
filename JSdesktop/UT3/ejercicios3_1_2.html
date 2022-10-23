@@ -5,32 +5,141 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicios 3.1 - 2</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        form{
+            margin: 20px auto;
+            width: 300px;
+            height: fit-content;
+        }
+        fieldset{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        input{
+            padding: 0 0 0 5px;
+            width: calc(100% - 7px);
+            height: 25px;
+            border: 1px solid grey;
+        }
+        #send{
+            width: 100% !important;
+            margin-top: 25px;
+            cursor: pointer;
+        }
+        .cont{
+            margin: 0 auto;
+            max-width: 400px;
+            min-height: 200px;
+            display: flex;
+        }
+        .films{
+            margin: 0 2.5px;
+            width: 50%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        .charcount{
+            height: 22px;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            width: 100%;
+        }
+        .film{
+            width: fit-content;
+            height: fit-content;
+            padding: 10px;
+            border-radius: 2px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-    
+    <form id="filmsForm">
+        <fieldset>
+            <legend><h4>Mis peliculas favoritas</h4></legend>
+            <input type="text" name="film" id="film" placeholder="Titulo" required>
+            <span class="charcount">Cantidad de letras: </span>
+            <input type="text" name="author" id="author" placeholder="Autor" required>
+            <span class="charcount">Cantidad de letras: </span>
+            <input type="date" name="brandnew" id="brandnew" required>
+            <input type="submit" value="Enviar" id="send">
+        </fieldset>
+    </form>
+    <div class="cont">
+        <div class="films"><h5>TEXTO EN MAYUSCULAS</h5></div>
+        <div class="films"><h5>texto en minusculas</h5></div>
+    </div>
 </body>
 <script>
-    // nota de los alumnos y media de la clase
-    let numAlumnos,
-        Alumno = {
-            nombre: "",
-            nota: null,
-            nuevoAlumno: function(name,score){
-                this.nombre = name;
-                this.nota = score;
-            }
-        };
-    do{
-        numAlumnos = parseInt(prompt("Indique el número de alumnos: (entre 8 y 20)"));
-    }while(numAlumnos > 20 || numAlumnos < 8);
-
-    function mediaAlumnosClase(num){
-        let resultado = [];
-        for(let i=0;i<num;i++){
+    /*
     
-            resultado[i] = Alumno.nuevoAlumno("Pedro",i);
-        }
-        return resultado;
-    }
+        2.-  Crea un programa que pida al usuario su título, autor de película favoritay año de estreno, y muestre:
+         a)    El tamaño de ambos (título y autor), sin contar espacios.
+         b)    La cadena de caracteres en minúsculas y en mayúsculas.
+         c)   Que divida los datos en tres líneas, donde ponga
+                            a.    Título:
+                            b.    Autor:
+                            c.     Año:
+    
+    */
+ 
+   let film = document.querySelector('#film'),
+       author = document.querySelector('#author'),
+       brandnew = document.querySelector('#brandnew'),
+       charcounts = document.querySelectorAll('.charcount'),
+       send = document.querySelector('#send'),
+       form = document.querySelector('#filmsForm'),
+       films = document.querySelectorAll('.films');
+    
+   form.addEventListener('submit',e=>{
+    e.preventDefault();
+    printFilms();
+   });
+   // Impresion de las peliculas favoritas en mayusculas y minusculas, y con el formato indicado.
+   function printFilms(){
+        let elementUpper= `
+        <div class='film'>
+            <h6>TITULO: ${film.value.toUpperCase()}</h6>
+            <h6>AUTOR: ${author.value.toUpperCase()}</h6>
+            <h6>AÑO: ${brandnew.valueAsDate.toLocaleDateString()}</h6>
+        </div>
+        `,
+        elementLower= `
+        <div class='film'>
+            <h6>Titulo: ${film.value.toLowerCase()}</h6>
+            <h6>Autor: ${author.value.toLowerCase()}</h6>
+            <h6>Año: ${brandnew.valueAsDate.toLocaleDateString()}</h6>
+        </div>`;
+        films[0].insertAdjacentHTML('beforeend',elementUpper);
+        films[1].insertAdjacentHTML('beforeend',elementLower);
+        form.reset();
+        printCharsLength();
+   }
+   document.addEventListener('keyup',printCharsLength);
+// Funcion para mostrar los caracteres en la seccion "Cantidad de letras" justo debajo de cada campo de formulario
+   function printCharsLength(){
+        charcounts[0].innerText = "Cantidad de letras: "+(strl(film.value));
+        charcounts[1].innerText = "Cantidad de letras: "+(strl(author.value));
+   }
+   // Funcion para contar los caracteres sin espacios, del titulo y el autor
+   function strl (thestring){
+        let result=0;
+        thestring.trim().split(" ").forEach(text => {
+            result += text.length;
+        });
+        return result;
+   }
 </script>
 </html>

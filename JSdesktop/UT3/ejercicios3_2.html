@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3.2</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .cont{
+            top: 15%;left: 10%;
+            position: fixed;
+            min-width: 500px;
+            width: 80%;
+            height: fit-content;
+            text-align: center;
+        }
+
+        h3{
+            margin-top: 20px;
+            font-size: 60px;
+        }
+        h5{
+            position: relative;
+            margin-top: 20px;
+            font-size: 40px;
+        }
+        h5::before{
+            right: 0;
+            position: absolute;
+            content: ' ';
+            width: 2%;
+            height: 100%;
+            background: white;
+            animation-name: write;
+            animation-duration: 2.1s;
+            animation-timing-function: steps(30);
+            animation-direction: alternate;
+        }
+        @keyframes write {
+            0% {width: 100%;}
+            40% {width: 100%;border-left: 5px solid rgb(0, 0, 0);}
+            80% {width: 2%;border-left: 5px solid rgb(0, 0, 0);}
+            100% {width: 2%;}
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <h3>¿Cuanto falta para fin de año?</h3>
+        <h5 id="dias"></h5>
+    </div>
+</body>
+<script>
+    /*   
+        EJERCICIO: dias_finaño
+        Crea un script que pida muestre el número de días que quedan desde hoy hasta el fin de año. 
+        Recuerda que los meses empiezan desde el número 0.
+    */
+   let dias = document.querySelector('#dias')
+   function cuantoFalta(){
+    let fechaActual = Date.parse(new Date()), 
+        findeAnio = Date.parse("Dec 31, 2022")
+   
+    return Math.round((findeAnio - fechaActual) * 1/1000 * 1/60 * 1/60 * 1/24);
+   }
+   dias.innerText = `Faltan ${cuantoFalta()} dias para fin de año`;
+</script>
+</html>
