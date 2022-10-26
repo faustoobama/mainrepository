@@ -47,4 +47,6 @@ Usuario Jorge sube a nivel X.
 Imprimir Jorge
 -> HTML con el párrafo azul claro y la información.
 */
+
+
 ?>
