@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +35,7 @@
         }
         .cont{
             margin: 0 auto;
-            max-width: 400px;
+            max-width: 500px;
             min-height: 200px;
             display: flex;
         }
@@ -113,14 +113,14 @@
         <div class='film'>
             <h6>TITULO: ${film.value.toUpperCase()}</h6>
             <h6>AUTOR: ${author.value.toUpperCase()}</h6>
-            <h6>AÑO: ${brandnew.valueAsDate.toLocaleDateString()}</h6>
+            <h6>AÑO: ${brandnew.valueAsDate.toLocaleDateString('Es-es')}</h6>
         </div>
         `,
         elementLower= `
         <div class='film'>
             <h6>Titulo: ${film.value.toLowerCase()}</h6>
             <h6>Autor: ${author.value.toLowerCase()}</h6>
-            <h6>Año: ${brandnew.valueAsDate.toLocaleDateString()}</h6>
+            <h6>Año: ${brandnew.valueAsDate.toLocaleDateString('Es-es')}</h6>
         </div>`;
         films[0].insertAdjacentHTML('beforeend',elementUpper);
         films[1].insertAdjacentHTML('beforeend',elementLower);
@@ -128,7 +128,7 @@
         printCharsLength();
    }
    document.addEventListener('keyup',printCharsLength);
-// Funcion para mostrar los caracteres en la seccion "Cantidad de letras" justo debajo de cada campo de formulario
+    // Funcion para mostrar los caracteres en la seccion "Cantidad de letras" justo debajo de cada campo de formulario
    function printCharsLength(){
         charcounts[0].innerText = "Cantidad de letras: "+(strl(film.value));
         charcounts[1].innerText = "Cantidad de letras: "+(strl(author.value));

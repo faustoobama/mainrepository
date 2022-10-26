@@ -12,5 +12,4 @@ echo $coche3->pintarInformacion()."<br>";
 $coche3->cargar($coche1);
 echo $coche3->pintarInformacion()." ".$coche3->getCarga()."<br>";
 
-
 ?>

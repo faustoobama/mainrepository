@@ -13,23 +13,55 @@
             min-width: 500px;
             width: 80%;
             height: fit-content;
-            text-align: center;
+            position: relative;
         }
-
-        h3{
-            margin-top: 20px;
+        span{width: fit-content;height: fit-content;position: absolute;}
+        #cuant{
+            font-size: 100px;
+            display: block;
+        }
+        #falta{
+            top: 100px;
             font-size: 60px;
+            display: block;
+        }
+        #para {
+            top: 172px;
+            left: 172px;
+            font-size: 30px;
+            display: block;
+        }
+        #fin{
+            top: 108px;
+            left: 222px;
+            font-size: 70px;
+            display: block;
+        }
+        #de{
+            top: 159px;
+            left: 256px;
+            font-size: 60px;
+            display: block;
+        }
+        #an {
+            top: 176px;
+            left: 282px;
+            font-size: 90px;
+            display: block;
         }
         h5{
-            position: relative;
+            top: 400px;
+            position: absolute;
             margin-top: 20px;
             font-size: 40px;
+            width: fit-content;
+            margin: 30px auto 0 auto;
         }
         h5::before{
             right: 0;
             position: absolute;
             content: ' ';
-            width: 2%;
+            width: 0%;
             height: 100%;
             background: white;
             animation-name: write;
@@ -40,14 +72,16 @@
         @keyframes write {
             0% {width: 100%;}
             40% {width: 100%;border-left: 5px solid rgb(0, 0, 0);}
-            80% {width: 2%;border-left: 5px solid rgb(0, 0, 0);}
-            100% {width: 2%;}
+            80% {width: 0%;border-left: 5px solid rgb(0, 0, 0);}
+            100% {width: 0%;}
         }
     </style>
 </head>
 <body>
     <div class="cont">
-        <h3>¿Cuanto falta para fin de año?</h3>
+        <span id="cuant">Cuanto</span><span id="falta">falta</span><span id="para">para</span>
+        <span id="fin">fin</span><span id="de">de</span><span id="an">año</span>
+
         <h5 id="dias"></h5>
     </div>
 </body>

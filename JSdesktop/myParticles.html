@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #cont{
+            margin: 0 auto;
+            width: 100vw;
+            height: 100vh;
+            min-height: 500px;
+        }
+        .particle{
+            --var-dimention: 50px;
+            --var-dimention2: 100px;
+            position: absolute;
+            border-radius: var(--var-dimention);
+            transition: 2s all;
+        }
+        .microp{
+            top: 0;
+            left: 0;
+            width: var(--var-dimention);
+            height: var(--var-dimention);
+            background: brown;
+        }
+        .macrop{
+            top: 0;
+            left: 0;
+            width: var(--var-dimention2);
+            height: var(--var-dimention2);
+            background: orange;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="cont"></div>
+</body>
+<script>
+    'use strict';
+    let container = document.querySelector('#cont');
+    let particle;
+    function crearParticulas(){
+        let elemento ="<div class="+((Math.trunc(Math.random()*10) >= 5)?"'particle microp'":"'particle macrop'")+"></div>";
+        container.insertAdjacentHTML('beforeend',elemento);
+    }
+
+    for(let i = 0; i < 10; i++){
+        crearParticulas();
+        particle = document.querySelectorAll('.particle');
+        particle.forEach(elm => {
+            elm.style.top = Math.trunc(Math.random()*500)+"px";
+            elm.style.left = Math.trunc(Math.random()*500)+"px";
+            
+        });
+
+    }
+    setTimeout(() => {
+        let x = 10;
+        particle[0].style.top = x +"px"; 
+    
+    }, 600);
+
+        
+</script>
+</html>

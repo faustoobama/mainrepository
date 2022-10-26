@@ -13,7 +13,7 @@ class CocheGrua extends Coche {
     public function setCocheCargado($value){$this->cocheCargado=$value;}
     public function getCocheCargado (){return $this->cocheCargado;}
     public function pintarInformacion(){
-        return parent::pintarInformacion()." ".(($this->cocheCargado)?"Grua cargada con: ":"Grua libre");
+        return parent::pintarInformacion()." ".(($this->cocheCargado)?"Grua cargada":"Grua libre");
     }
 
     public function cargar(Coche $carga){
