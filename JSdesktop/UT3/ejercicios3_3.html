@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3.3</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .cont{
+            background: rgb(201, 201, 201);
+            width: 100%;
+            height: 303px;
+            padding-top: 33px;
+        }
+        h1{
+            color: white;
+            font-size: 33px;
+        }
+        h2{
+            color: purple;
+            margin: 33px 0;
+            font-size: 22px;
+        }
+        input[type="button"]{
+            margin: 5px;
+            padding: 0 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <h1>DWEC 22/23</h1>
+        <h2>Cerrar/Abrir Ventana usando JavaScript</h2>
+        <div>
+            <input type="button" value="Click para abrir w3schools" id="open">
+            <input type="button" value="Pulse para cerrar la ventana" id="close">
+        </div>
+    </div>
+</body>
+<script>
+    'use strict';
+    let openedW, // Declaramos las variables referentes a la ventana abierta o a abrir,
+        countdown; // y la variable para la función  de cuenta a atrás, 
+        // necesaria para cerrar la ventana transcurridos 10 segundos.
+    
+    // Definimos un evento en el que se esperara por el evento'click' y se revisará
+    // el elemento seleccionado, de forma que se ejecute una accion u otra en función de éste.
+    document.addEventListener('click',e=>{
+        (e.target.id == 'open') // Si el elemento seleccionado es el boton con id 'open',
+                                // se ejecutarán las 3 siguientes acciones:
+        ?(clearTimeout(countdown), // 1. Se cerrará una cuenta atrás previa, en caso de estar iniciada
+        openedW = window.open('https://www.w3schools.com/js/','W3Schol','width=450,height=580'), // 2. Se abrirá la pestaña
+        countdown = setTimeout(()=>openedW.close(),10000)) // 3. Se iniciará una nueva cuenta a atrás de 10 segundos, para cerrar la ventana abierta.
+        :((e.target.id == 'close' && openedW != null) // Si el elemento seleccionado es aquel con id 'close' y la ventana está abierta:
+        ?openedW.close() // Se procede a cerrar la ventana
+        :console.log('No action will be executed')); // Si no esta abierta la ventana, se imprime un mensaje por consola
+    });
+
+    /*
+        INFORMACION ADICIONAL
+
+        Si en la linea 58 de este código, eliminamos el apartado 'clearTimeout(xxxxxxx)', seguirá funcionando igualmente,
+        pero si después de abrir la pestaña, esperamos como 5 segundos o los que sean, y pulsamos nuevamente el botón para
+        abrir nuevamente la ventana; ésta no se cerrará a los 10 segundos pese a haber sido abierta de nuevo, sino mucho antes,
+        debido a que ya había una cuenta a atrás previa iniciada.
+    */
+</script>
+</html>
