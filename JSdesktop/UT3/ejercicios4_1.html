@@ -15,8 +15,12 @@
             background-color: #797979;
             border-radius: 20px;
         }
-
+        @keyframes show{
+            from {height: 0px;}
+            to {height: 200px;}
+        }
         #maincont{
+            margin-top: 5px;
             width: 100%;
             min-width: 980px;
             min-height: 101vh;
@@ -36,6 +40,7 @@
         }
         #cont1{
             height: 200px;
+            animation: show .9s;
         }
         .content{
             margin: 3px 0;
@@ -90,7 +95,7 @@
             <p>
                 1.- Escribe una función que reciba dos decimales con la base y altura de un rectángulo y devuelva su perímetro. <br>
                 Puedes elegir que la función obtenga los datos de la entrada estándar o no. Indicandolo en el script. <br><br>
-                Se devolverá un decimal (float). El estilo de la función debe definirse así:
+                Se devolverá un decimal (float).
             </p>
             <form class="operadores" id="ops">
                 <input type="number">
