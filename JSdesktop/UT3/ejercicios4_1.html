@@ -38,7 +38,7 @@
             height: 200px;
         }
         .content{
-            margin: 1px 0;
+            margin: 3px 0;
             width: 980px;
             padding-left: 20px;
             height: 0px;
@@ -125,6 +125,9 @@
 </body>
 <script>
     'use stric';
+
+    // EJERCICIO 1
+
     let tablaPerim = document.getElementById('res'),
     operadores = document.getElementById('ops'),
     inputs;
@@ -137,13 +140,14 @@
         tablaPerim.insertAdjacentHTML('beforeend','<tr><td>'+inputs[0].value+', '+inputs[1].value+'</td><td>'+(2*(parseInt(inputs[0].value) + parseInt(inputs[1].value)))+'</td></tr>');
         operadores.reset();
     }
+
     operadores.addEventListener('submit',calcularPerimetro);
 
-    let ejecu1 = document.getElementById('ejecu1'),
-        ejecu2 = document.getElementById('ejecu2');
+    // FIN EJERCICIO 1
     
-    ejecu1.addEventListener('click',iniciarEjercicio2);
-    ejecu2.addEventListener('click',iniciarEjercicio3);
+    // EJERCICIO 2
+
+    let ejecu1 = document.getElementById('ejecu1'); 
 
     function iniciarEjercicio2(){
         let numAlumnos,
@@ -167,6 +171,14 @@
         laLista.innerHTML = "<table> <tr><th>ALUMNO</th><th>NOTA</th></tr>"+cadenaValores+"</table>";
     }
 
+    ejecu1.addEventListener('click',iniciarEjercicio2);
+
+    // FIN EJERCICIO 2
+
+    // EJERCICIO 3
+
+    let ejecu2 = document.getElementById('ejecu2');
+
     function iniciarEjercicio3(){
         let cadenas = [];
 
@@ -187,8 +199,12 @@
         return result;
     }
 
-    // Seccion meranente  decorativa
-    // Pestañas plegables
+    ejecu2.addEventListener('click',iniciarEjercicio3);
+
+    //FIN EJERCICIO 3
+
+    // ESTA ES UNA SECCION EXTRA REFERENTE AL APARTADO DECORATIVO DE LA WEB
+    // PESTAÑAS PLEGABLES
 
     document.addEventListener('click',e=>{
         let cont1 = document.querySelector('#cont1'),
