@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4.1</title>
+    <style>
+        *{margin: 0;padding: 0;}
+
+        *::-webkit-scrollbar {
+            width:7px;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: #797979;
+            border-radius: 20px;
+        }
+
+        #maincont{
+            width: 100%;
+            min-width: 980px;
+            min-height: 101vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .title{
+            width: 980px;
+            padding-left: 20px;
+            height: 30px;
+            line-height: 30px;
+            background: rgb(110, 191, 216);
+            color: white;
+            cursor: pointer;
+
+        }
+        #cont1{
+            height: 200px;
+        }
+        .content{
+            margin: 1px 0;
+            width: 980px;
+            padding-left: 20px;
+            height: 0px;
+            color: rgb(115, 115, 115);
+            transition: .6s;
+            overflow-y: scroll;
+            box-shadow: 0 0 3px black inset;
+        }
+        .operadores{
+            margin: 10px 0;
+            display: grid;
+            width: 100%;
+            height: 55px;
+            grid-template-columns: 15% 7.5%;
+            grid-template-rows: repeat(2,50%);
+            justify-content: center;
+        }
+        input[type='number']{
+            padding-left: 10px;
+            outline: none;
+        }
+        p{margin: 10px 0;}
+        table{margin: 10px auto;border-collapse: collapse;}
+        th,td{
+            border: 1px solid rgb(109, 109, 109);
+            min-width: 110px;
+            text-align: center;
+            padding: 2px 5px;
+        }
+        .ejecuButton{
+            display: block;
+            padding: 5px;
+            cursor: pointer;
+        }
+        #lista{
+            display: flex;
+            width: 100%;
+            height: fit-content;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="maincont">
+        <div class="title" id="ej1">EJERCICIO 4.1 - APARTADO 1</div>
+        <div class="content" id="cont1">
+            <p>
+                1.- Escribe una función que reciba dos decimales con la base y altura de un rectángulo y devuelva su perímetro. <br>
+                Puedes elegir que la función obtenga los datos de la entrada estándar o no. Indicandolo en el script. <br><br>
+                Se devolverá un decimal (float). El estilo de la función debe definirse así:
+            </p>
+            <form class="operadores" id="ops">
+                <input type="number">
+                <input type="number">
+                <input id="perim" type="submit" value="Calcular" style="grid-column: 2/3;grid-row: 1/3;cursor: pointer;">
+            </form>
+            <table class="resultado" id="res">
+                <tr>
+                    <th>Entrada</th><th>Salida</th>
+                </tr>
+            </table>
+        </div>
+        <div class="title" id="ej2">EJERCICIO 4.1 - APARTADO 2</div>
+        <div class="content" id="cont2">
+            <p>
+                2.- Crear un script en el que se pregunte por el número de alumnos (no superior a 20, ni inferior a 8) que hay en un <br>
+                curso, y en función de este dato, pida el nombre de los alumnos y su nota de curso. Al final, se debe mostrar, cada <br>
+                alumno con su nota y después la media de todos los alumnos.
+            </p>
+            <input type="button" value="Ejecutar" class="ejecuButton" id="ejecu1">
+            <div id="lista"></div>
+        </div>
+        <div class="title" id="ej3">EJERCICIO 4.1 - APARTADO 3</div>
+        <div class="content" id="cont3">
+            <p>
+                3. Realizar una función que reciba como argumento un array con dos elementos de tipo cadena  y devuelva TRUE si el primer elemento de la matriz se<br>
+                encuentran todas las letras del segundo elemento de la matriz. Por ejemplo, ['javascript','JavaScript'] debe devolver TRUE; ['java','JavaScript'] false.
+            </p>
+            <input type="button" value="Ejecutar" class="ejecuButton" id="ejecu2">
+        </div>
+    </div>
+</body>
+<script>
+    'use stric';
+    let tablaPerim = document.getElementById('res'),
+    operadores = document.getElementById('ops'),
+    inputs;
+    function calcularPerimetro(e){
+        e.preventDefault();
+        inputs = document.querySelectorAll("[type='number']");
+        inputs.forEach(element => {
+            if(isNaN(element.value) || element.value == '') element.value = 0;
+        });
+        tablaPerim.insertAdjacentHTML('beforeend','<tr><td>'+inputs[0].value+', '+inputs[1].value+'</td><td>'+(2*(parseInt(inputs[0].value) + parseInt(inputs[1].value)))+'</td></tr>');
+        operadores.reset();
+    }
+    operadores.addEventListener('submit',calcularPerimetro);
+
+    let ejecu1 = document.getElementById('ejecu1'),
+        ejecu2 = document.getElementById('ejecu2');
+    
+    ejecu1.addEventListener('click',iniciarEjercicio2);
+    ejecu2.addEventListener('click',iniciarEjercicio3);
+
+    function iniciarEjercicio2(){
+        let numAlumnos,
+            notas=[],cadenaValores="",
+            laLista = document.getElementById('lista');
+        do {
+            numAlumnos = parseInt(prompt('Introduzca el numero de alumnos: (entre 8 y 20)'));
+        } while (numAlumnos < 8 || numAlumnos > 20 || isNaN(numAlumnos));
+
+        for(let i = 0; i < numAlumnos; i++){
+            do{
+                notas[i] = {
+                    alumno: prompt('Indique el nombre del alumno '+(i+1)+': '),
+                    notaMedia: parseFloat(prompt('Indique la nota del alumno '+(i+1)+': (Entre 0 y 10)'))
+                }
+            }while(notas[i].notaMedia < 0 || notas[i].notaMedia > 10);
+
+            cadenaValores +="<tr><td>"+notas[i].alumno+"</td><td>"+notas[i].notaMedia+"</td></tr>"
+        }
+
+        laLista.innerHTML = "<table> <tr><th>ALUMNO</th><th>NOTA</th></tr>"+cadenaValores+"</table>";
+    }
+
+    function iniciarEjercicio3(){
+        let cadenas = [];
+
+        cadenas[0] = prompt('Ingrese la primera cadena: ');
+        cadenas[1] = prompt('Ingrese la segunda cadena: ');
+
+        alert('El resultado es: '+incluye(cadenas));
+    }
+
+    function incluye(array){
+        let result = false, 
+            counter = 0;
+        do{
+            result = array[0].includes(array[1][counter]);
+            counter++;
+        }while(result && counter < array[1].length);
+
+        return result;
+    }
+
+    // Seccion meranente  decorativa
+    // Pestañas plegables
+
+    document.addEventListener('click',e=>{
+        let cont1 = document.querySelector('#cont1'),
+            cont2 = document.querySelector('#cont2'),
+            cont3 = document.querySelector('#cont3'),
+            consH = '200px';
+
+        switch (e.target.id) {
+            case 'ej1':
+            (getComputedStyle(cont1).height == '0px')?cont1.style.height = consH:cont1.style.height = '0px';
+                break;
+            case 'ej2':
+            (getComputedStyle(cont2).height == '0px')?cont2.style.height = consH:cont2.style.height = '0px';
+                break;
+            case 'ej3':
+            (getComputedStyle(cont3).height == '0px')?cont3.style.height = consH:cont3.style.height = '0px';
+                break;
+        }
+    });
+</script>
+</html>
