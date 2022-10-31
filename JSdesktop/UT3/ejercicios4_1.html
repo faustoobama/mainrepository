@@ -22,14 +22,14 @@
         #maincont{
             margin-top: 5px;
             width: 100%;
-            min-width: 980px;
+            min-width: 1010px;
             min-height: 101vh;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .title{
-            width: 980px;
+            width: 990px;
             padding-left: 20px;
             height: 30px;
             line-height: 30px;
@@ -44,7 +44,7 @@
         }
         .content{
             margin: 3px 0;
-            width: 980px;
+            width: 990px;
             padding-left: 20px;
             height: 0px;
             color: rgb(115, 115, 115);
@@ -187,8 +187,8 @@
     function iniciarEjercicio3(){
         let cadenas = [];
 
-        cadenas[0] = prompt('Ingrese la primera cadena: ');
-        cadenas[1] = prompt('Ingrese la segunda cadena: ');
+        cadenas[0] = prompt('Ingrese la primera cadena: ').toLowerCase();
+        cadenas[1] = prompt('Ingrese la segunda cadena: ').toLowerCase();
 
         alert('El resultado es: '+incluye(cadenas));
     }
