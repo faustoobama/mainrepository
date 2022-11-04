@@ -72,6 +72,17 @@
     <div>
 
     </div>
+    <?php
+        if(!empty($cancion['tema']) && !empty($cancion['hora'])){
+            $fichero = 'playlist.txt';
+            // Abre el fichero para obtener el contenido existente
+            $contenido = file_get_contents($fichero);
+            // Añade una nueva persona al fichero
+            $contenido .= "Tema: ".$cancion['tema']."\n"."Hora: ".$cancion['hora']."\n";
+            // Escribe el contenido al fichero
+            file_put_contents($fichero, $contenido);
+        }
+    ?>
 </body>
 </html>
 
