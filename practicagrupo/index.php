@@ -114,18 +114,18 @@ Calculo de edad para fines posteriores
 
         <div>
             <label for="idiomas">Idiomas</label> <br>
-            <input type="checkbox" name="ingles" id="ingles"> <label for="">Ingles</label> <br>
-            <input type="checkbox" name="ingles" id="frances"> <label for="">Frances</label> <br>
-            <input type="checkbox" name="ingles" id="español"> <label for="">Español</label> <br>
-            <input type="checkbox" name="ingles" id="portugués"> <label for="">Portugués</label> <br>
+            <input type="checkbox" name="ingles" id="ingles"> <label for="ingles">Ingles</label> <br>
+            <input type="checkbox" name="frances" id="frances"> <label for="frances">Frances</label> <br>
+            <input type="checkbox" name="español" id="español"> <label for="español">Español</label> <br>
+            <input type="checkbox" name="portugues" id="portugues"> <label for="portugues">Portugués</label> <br>
         </div>
 
         <div>
             <label for="preferencias">Preferencias: </label> <br>
-            <input type="checkbox" name="bbdd" id="bbdd"> <label for="">Bases de datos</label> <br>
-            <input type="checkbox" name="redes" id="redes"> <label for="">Redes</label> <br>
-            <input type="checkbox" name="sre" id="sre"> <label for="">Sistemas</label> <br>
-            <input type="checkbox" name="devs" id="devs"> <label for="">Desarrollo</label> <br>
+            <input type="checkbox" name="bbdd" id="bbdd"> <label for="bbdd">Bases de datos</label> <br>
+            <input type="checkbox" name="redes" id="redes"> <label for="redes">Redes</label> <br>
+            <input type="checkbox" name="sre" id="sre"> <label for="sre">Sistemas</label> <br>
+            <input type="checkbox" name="devs" id="devs"> <label for="devs">Desarrollo</label> <br>
         </div>
 
         <div style="grid-colum:1/3; grid-row:4/5;">
