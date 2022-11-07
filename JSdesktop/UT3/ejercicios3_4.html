@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3.4</title>
+    <style>
+        .cont{
+            margin: 30px auto;
+            width: 666px;
+            height: fit-content;
+        }
+        .botones{
+            width: 180px;
+            height: 30px;
+            font-size: 16px;
+            background: rgb(87, 185, 205);
+            box-shadow: 1px 1px 1px rgb(56, 56, 56);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: .6s all;
+        }
+        .botones:hover{
+            font-size: 16px;
+            background: rgb(206, 98, 40);
+            box-shadow: 3px 3px 5px rgb(56, 56, 56);
+            color: rgb(255, 255, 255);
+        }
+        h5{
+            color: rgb(86, 86, 86);
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cont">
+        <h5>
+            1. Abrir una ventana nueva, con las siguientes condiciones:
+            Se debe preguntar al usuario si está de acuerdo o no, y solo si acepta se abrirá la nueva ventana.
+            La nueva ventana tendrá 300 x 200 pixeles, y se posicionará en 500x500 pixeles.
+        </h5>
+        <div class="botones" id="ej1">Abrir nueva ventana</div>    
+        <h5>
+            2.- Al presionar este botón, generar un numero aleatorio entre 0 y 3, de forma que si se genera el 0 se abrirá
+            la web de gmail.com, si un 1 la web del correo de educamadrid (https://correoweb.educa.madrid.org/), si se
+            genera un 2, la web de yahoo, y un 3 la web de Outlook. 
+            (Para generar un valor aleatorio utilizar la función random del objeto Math.)
+        </h5>
+        <div class="botones" id="ej2">Abrir web aleatoria</div>
+        <h5>
+            3.- Con este botón aparecerá una ventana que ocupará el ancho del monitor y la mitad de su altura.
+            Se mostrará un alert indicando si el navegador tiene activadas las cookies.
+        </h5>
+        <div class="botones" id="ej3">Abrir ventana y Cookies</div>
+    </div>
+    
+</body>
+<script>
+    'use strict';
+    document.addEventListener('click',(e)=>{ // Añadimos eventos de forma que se ejecute una accion en funcion del elemento seleccionado
+        switch(e.target.id){
+            case 'ej1': // Si se acciona el boton del ejercicio 1, se ejecutará el apartado del ejercicio 1
+            if(window.confirm("¿En verdad deseas abrir una nueva ventana?")){
+                window.open("","Ventana nueva","width=300px, height=200px");
+            }
+            break;
+            case 'ej2': // Si se acciona el boton del ejercicio 2, se ejecutará el apartado del ejercicio 2
+                let aleatorio = parseInt(Math.random()*4); // Obtenemos el numero aleatorio
+                switch(aleatorio){ // en funcion del valor aleatorio, se abrirán unas ventanas u otras
+                    case 0:
+                        window.open("https://www.gmail.com");
+                    break;
+                    case 1:
+                        window.open("https://correoweb.educa.madrid.org");
+                    break;
+                    case 2:
+                        window.open("https://www.yahoo.es");
+                    break;
+                    case 3:
+                        window.open("https://www.outlook.com");
+                    break;
+                 }
+                
+            break;
+            case 'ej3': // Si se acciona el boton del ejercicio 3, se ejecutará el apartado del ejercicio 3
+            let ventana = window.open("","Revision de cookies","width="+window.innerWidth+"px, height="+(window.innerHeight/2)+"px"),
+                cookies = document.cookie; // obtenemos las cookies que se estan usando
+                (cookies != '') // evaluamos el valor
+                ?ventana.alert("Se está usando cookies") // Si no están vacías, se mostrará en el panel de la alerta, un mensaje afirmativo
+                :ventana.alert("No se está usando cookie alguna"); // Si están vacías, se mostrará en el panel de la alerta, un mensaje negativo
+            break;
+        }
+    });
+</script>
+</html>
