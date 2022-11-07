@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+* {margin: 0;padding: 0;font-family: Oswald;font-size: 15px;}
+.mainContainer{
+    position: relative;
+    width: 100%;
+    min-height: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    padding: 10px 0;
+    justify-content: space-between;
+}
+.Container{
+    position: relative;
+    width: 500px;
+    height: 800px;
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+    grid-template-rows: 20% 27% 16% 18% 16%;
+    column-gap: 4%;
+}
+
+.inputCont{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+input[type='text'],input[type='email'],input[type='tel']{
+    width: calc(100% - 8px);
+    padding: 2px 0 2px 6px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+#fechaNac,#inicio{
+    width: calc(100% - 8px);
+    padding: 0 0 4px 6px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.inputSel{
+    width: 100%;
+    cursor: pointer;
+    padding: 0px 5px;
+    height: 26px;
+    border-radius: 0;
+    margin-bottom: 5px;
+}
+#presentacion{
+    resize: none;
+    width: calc(100% - 9px);
+    height: 70%;
+    padding: 5px 0 0 7px;
+    margin: 10px 0 0 0;
+}
+.enviar{
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+#enviar{
+    display: none;
+}
+#enviarFalse{
+    display: block;
+}
+.checkboxs > input, .checkboxs > label {
+    cursor: pointer;
+}
+input{
+    border-radius: 0;
+    height: 18px;
+}
+#curriculum {
+    display: none;
+    height: 30px;
+}
+#curr {
+    display: block;
+    width: fit-content;
+    height: 25px;
+    line-height: 25px;
+    cursor: pointer;
+    background: #e0e0e0;
+    padding: 1px 5px;
+    box-shadow: 1px 1px 2px black;
+    margin: 15px 0 10px 0;
+}
+.radios label {
+    cursor: pointer;
+    font-size: 14px;
+}
+.ofRadios{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.radios{
+    margin: 8.5px 0;
+}
+
+.bannerButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bolder;
+}
+#confirmButton{
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: rgb(67, 239, 156);
+}
+#cancelButton{
+    color: red;
+    align-self: center;
+    justify-self: center;
+}
+#confirmBanner{
+    z-index: 1;
+    position: absolute;
+    width: 600px;
+    height: 800px;
+    background: rgba(218, 218, 218, 0.949);
+    display: none;
+    grid-template-columns: repeat(2, 40%);
+    gap: 4%;
+    grid-template-rows: 80% 6%;
+    justify-content: center;
+}
