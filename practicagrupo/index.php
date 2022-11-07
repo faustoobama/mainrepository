@@ -54,7 +54,7 @@ Calculo de edad para fines posteriores
                 <label for="email">Correo:</label> <br>
                 <input type="email" name="email" id="email"> <br>
                 <label for="telefono">Telefono:</label> <br>
-                <input type="tel" name="telefono" id="telefono"> <br>
+                <input type="number" name="telefono" id="telefono"> <br>
                 <label for="fechaNac">Fecha de nacimiento: </label> <br>
                 <input type="date" name="fechaNac" id="fechaNac"> <br>
             </div>
@@ -82,21 +82,21 @@ Calculo de edad para fines posteriores
             <label for="grado">Comunidad Autonoma: </label> <br>
                 <select name="comunidad" id="comunidad" class="inputSel">
                     <option value="void">Seleccione su comunidad</option>
-                    <option value="asir">Madrid</option>
-                    <option value="daw">Barcelona</option>
-                    <option value="dam">Andalucia</option>
+                    <option value="madrid">Madrid</option>
+                    <option value="barcelona">Barcelona</option>
+                    <option value="andalucia">Andalucia</option>
                 </select>
                 
-                <label for="poblacion">Poblacion: </label> <br>
-                <select name="poblacion" id="poblacion" class="inputSel">
+                <label for="provincia">Provincia: </label> <br>
+                <select name="provincia" id="provincia" class="inputSel">
                     <option value="void">Seleccione su localidad</option>
-                    <option value="asir">Ciempozuelos</option>
-                    <option value="daw">Aranjuez</option>
-                    <option value="dam">Villa Verde</option>
+                    <option value="ciempozuelos">Ciempozuelos</option>
+                    <option value="sranjuez">Aranjuez</option>
+                    <option value="villaverde">Villa Verde</option>
                 </select>
 
                 <label for="postalcode">Cod. postal:</label> <br>
-                <input type="text" name="postalcode" id="postalcode"> <br>
+                <input type="number" name="postalcode" id="postalcode"> <br>
 
                 <label for="domicilio">Domicilio</label> <br>
                 <input type="text" name="domicilio" id="domicilio"> <br>
@@ -104,18 +104,18 @@ Calculo de edad para fines posteriores
 
             <div class="inputCont checkboxs">
                 <label for="idiomas">Idiomas</label> <br>
-                <input type="checkbox" name="en" id="en"> <label for="en">Ingles</label> <br>
-                <input type="checkbox" name="fr" id="fr"> <label for="fr">Frances</label> <br>
-                <input type="checkbox" name="es" id="es"> <label for="es">Español</label> <br>
-                <input type="checkbox" name="pt" id="pt"> <label for="pt">Portugués</label> <br>
+                    <div><input type="checkbox" name="es" id="es"> <label for="es">Español</label> </div>
+                    <div><input type="checkbox" name="en" id="en"> <label for="en">Ingles</label> </div>
+                    <div><input type="checkbox" name="fr" id="fr"> <label for="fr">Frances</label> </div>
+                    <div><input type="checkbox" name="pt" id="pt"> <label for="pt">Portugués</label> </div>
             </div>
 
             <div class="inputCont checkboxs">
                 <label for="preferencias">Preferencias: </label> <br>
-                <input type="checkbox" name="bbdd" id="bbdd"> <label for="bbdd">Bases de datos</label> <br>
-                <input type="checkbox" name="redes" id="redes"> <label for="redes">Redes</label> <br>
-                <input type="checkbox" name="sre" id="sre"> <label for="sre">Sistemas</label> <br>
-                <input type="checkbox" name="devs" id="devs"> <label for="devs">Desarrollo</label> <br>
+                    <div><input type="checkbox" name="bd" id="bd"> <label for="bd">Bases de datos</label> </div>
+                    <div><input type="checkbox" name="redes" id="redes"> <label for="redes">Redes</label> </div>
+                    <div><input type="checkbox" name="sre" id="sre"> <label for="sre">Sistemas</label> </div>
+                    <div><input type="checkbox" name="devs" id="devs"> <label for="devs">Desarrollo</label> </div>
             </div>
 
             <div class="inputCont" style="grid-column:1/3; grid-row:4/5;">
@@ -133,7 +133,9 @@ Calculo de edad para fines posteriores
 
         <div id="confirmBanner">
             <div id="formInfo" style="grid-column: 1/3;grid-row: 1/2;"></div>
+
             <label for="enviar" class="bannerButton" id="confirmButton" style="grid-column: 1/2;grid-row: 2/3;">Confirmar</label>
+
             <div class="bannerButton" id="cancelButton" style="grid-column: 2/3;grid-row: 2/3;">Cancelar</div>
         </div>
     </div>

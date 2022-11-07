@@ -32,7 +32,7 @@
     height: 100%;
 }
 
-input[type='text'],input[type='email'],input[type='tel']{
+input[type='text'],input[type='email'],input[type='number']{
     width: calc(100% - 8px);
     padding: 2px 0 2px 6px;
     margin-bottom: 5px;
@@ -72,8 +72,19 @@ input[type='text'],input[type='email'],input[type='tel']{
 #enviarFalse{
     display: block;
 }
-.checkboxs > input, .checkboxs > label {
+.checkboxs > div > input, .checkboxs > div > label {
     cursor: pointer;
+    display: block;
+}
+.checkboxs > div > label {
+    display: flex;
+    align-items: center;
+}
+.checkboxs > div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 22px;
 }
 input{
     border-radius: 0;
