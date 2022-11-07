@@ -43,6 +43,7 @@ input[type='text'],input[type='email'],input[type='tel']{
     padding: 0 0 4px 6px;
     margin-bottom: 5px;
     cursor: pointer;
+    height: 18px;
 }
 .inputSel{
     width: 100%;

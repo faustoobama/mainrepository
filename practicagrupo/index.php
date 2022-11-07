@@ -66,16 +66,16 @@ Calculo de edad para fines posteriores
                     <input type="radio" name="genero" id="generof" value="f"> <label for="generof">Mujer</label> <br>
                     <input type="radio" name="genero" id="generox" value="x"> <label for="generox">Otro</label>
                 </div>
-                <label for="grado">Grado: </label> <br>
+                <label for="grado">Grado: </label>
                 <select name="grado" id="grado" class="inputSel">
                     <option value="void">Seleccione el grado</option>
                     <option value="asir">ASIR</option>
                     <option value="daw">DAW</option>
                     <option value="dam">DAM</option>
-                </select> <br>
+                </select>
 
-                <label for="inicio">Inicio de Practicas: </label> <br>
-                <input type="date" name="inicio" id="inicio"> <br>
+                <label for="inicio">Inicio de Practicas: </label>
+                <input type="date" name="inicio" id="inicio">
             </div>
 
             <div class="inputCont">
