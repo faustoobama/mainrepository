@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaciones y Display Flex</title>
+    <style>
+        *{margin: 0;padding: 0;}
+         @keyframes maquinilla {
+            0%{width: 100%;}
+            50%{width: 0%;}
+            100%{width: 100%;}
+        }
+         @keyframes tobottom {
+            0%{top: 0px;}
+            50%{top: 130px;}
+            100%{top: 0px;}
+        }
+        @keyframes toright {
+            0%{left:15%;}
+            50%{left:69%;}
+            100%{left:15%;}
+        }
+        @keyframes totopRa {
+            0%{top: 99px;left:19%}
+            50%{top: 33px;left:64%}
+            100%{top: 99px;left:19%}
+        }
+        @keyframes tobottomRa {
+            0%{top: 10px;left:29%}
+            50%{top: 122px;left:53%}
+            100%{top: 10px;left:29%}
+        }
+        @keyframes totopRb {
+            0%{top: 122px;left:29%}
+            50%{top: 10px;left:53%}
+            100%{top: 122px;left:29%}
+        }
+        @keyframes tobottomRb {
+            0%{top: 33px;left:19%}
+            50%{top: 99px;left: 64%}
+            100%{top: 33px;left:19%}
+        }  
+        .elemento{
+            animation-name: maquinilla;
+            animation-delay: 1s;
+            animation-direction: alternate /*alternate-revese reverse*/;
+            animation-duration: 3s;
+            animation-iteration-count: 2 /* infinite*/;
+            animation-play-state: ease-in-out /*linear step-start step-end*/;
+            animation-fill-mode: forwards /* backwards both */;
+        }
+        #mainCont{
+            width: 600px;
+            height: fit-content;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            flex-grow: inherit;
+            gap: 5px;
+        }
+        .elements{
+            width: 45%;
+            height: 200px;
+            border: 1px solid black;
+        }
+        .animTitle{
+            width: 100%;
+            height: 15%;
+            line-height: 30px;
+            text-align: center;
+        }
+        .animCont{
+            width: 100%;
+            height: 85%;
+            position: relative;
+        }
+        .bolitas{
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border: 1px solid rgb(49, 136, 120);
+            background: rgb(17, 170, 187);
+            border-radius: 100px;
+
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-play-state: ease-in-out;
+        }
+        .north{
+            left: 41%;
+            top: 0;
+            animation-name: tobottom;
+        }
+        .norwesta{
+            left: 29%;
+            top: 10px;
+            animation-name: tobottomRa;
+            animation-delay: .15s;
+        }
+        .norwestb{
+            left: 19%;
+            top: 33px;
+            animation-name: tobottomRb;
+            animation-delay: .45s;
+        }
+        .west{
+            left: 15%;
+            top: 66px;
+            animation-name: toright;
+            animation-delay: .75s;
+        }
+        .surwesta{
+            left: 19%;
+            top: 99px;
+            animation-name: totopRa;
+            animation-delay: 1.05s;
+        }
+        .surwestb{
+            left: 29%;
+            top: 122px;
+            animation-name: totopRb;
+            animation-delay: 1.35s;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="mainCont">
+        <div class="elements">
+            <h5 class="animTitle">Icono de carga POCHO dinamico</h5>
+            <div class="animCont">
+                <div class="bolitas north"></div>
+                <div class="bolitas norwesta"></div>
+                <div class="bolitas norwestb"></div>
+                <div class="bolitas west"></div>
+                <div class="bolitas surwesta"></div>
+                <div class="bolitas surwestb"></div>
+            </div>
+        </div>
+        <div class="elements">
+            <h5 class="animTitle">Titulo de animacion</h5>
+            <div class="animCont">
+
+            </div>
+        </div>
+        <div class="elements">
+            <h5 class="animTitle">Titulo de animacion</h5>
+            <div class="animCont">
+
+            </div>
+        </div>
+        <div class="elements">
+            <h5 class="animTitle">Titulo de animacion</h5>
+            <div class="animCont">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
