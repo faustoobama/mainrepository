@@ -47,12 +47,12 @@ Calculo de edad para fines posteriores
                 <label for="apellido">Apellido: </label><br>
                 <input type="text" name="apellido" id="apellido"> <br>
                 <label for="dni">DNI / NIE</label> <br>
-                <input type="text" name="dni" id="dni"> <br>
+                <input type="text" name="dni" id="dni" pattern="[0-9|Yy|Xx]{1}[0-9]{7}[A-Za-z]{1}"> <br>
             </div>
 
             <div class="inputCont">
                 <label for="email">Correo:</label> <br>
-                <input type="email" name="email" id="email"> <br>
+                <input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"> <br>
                 <label for="telefono">Telefono:</label> <br>
                 <input type="number" name="telefono" id="telefono"> <br>
                 <label for="fechaNac">Fecha de nacimiento: </label> <br>
