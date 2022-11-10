@@ -3,7 +3,7 @@
 class FechaNacimiento extends Texto{
 
     function isValid(){
-        $this->getValue()
+        return (intval($this->getValue().explode("/")[2]) < 2004);
     }
 
 }
