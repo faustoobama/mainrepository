@@ -1,5 +1,7 @@
 <?php
 
+require('Texto.php');
+
 class Usuario {
 
     // Atributos
@@ -20,26 +22,30 @@ class Usuario {
     private $curriculum;
     private $preferencias = [];
     private $fechaInicio; 
+    private $localidad;
+    private $codPostal;
     
     // limitar a una semana después de la inscripción
 
-    function __construct($nom,$apell,$dom,$email,$sexo,$fnac,$dni,$tel,$present,$grado,$idiom,$curricul,$prefer,$inicio){
+    function __construct($datos){
 
         $this-> uuid = self::$numUsuar++;
-        $this-> nombre = $nom;
-        $this-> apellido = $apell;
-        $this-> domicilio = $dom;
-        $this-> correo = $email;
-        $this-> sexo = $sexo;
-        $this-> fechaNac = $fnac;
-        $this-> dni = $dni;
-        $this-> telefono = $tel;
-        $this-> presentacion = $present;
-        $this-> grado = $grado;
-        $this-> idioma = $idiom;
-        $this-> curriculum = $curricul;
-        $this-> preferencias = $prefer;
-        $this -> fechaInicio = $inicio;
+        $this-> nombre = new Texto($datos['nombre']);
+        $this-> apellido = new Texto($datos['apellido']);
+        $this-> domicilio = new Texto($datos['domicilio']);
+        $this-> correo = new Texto($datos['email']);
+        $this-> sexo = new Texto($datos['genero']);
+        $this-> fechaNac =  new Texto($datos['fechaNac']);
+        $this-> dni = new Texto($datos['dni']);
+        $this-> telefono = new Texto($datos['telefono']);
+        $this-> presentacion = new Texto($datos['presentacion']);
+        $this-> grado =  new Texto($datos['grado']);
+        $this-> idioma = new Texto($datos['']);
+        $this-> curriculum = new Texto($datos['curriculum']);
+        $this-> preferencias = new Texto($datos['']);
+        $this -> fechaInicio = new Texto($datos['inicio']);
+        $this -> localidad = new Texto($datos['localidad']);
+        $this -> codPostal = new Texto($datos['postalCode']);
 
     }
 

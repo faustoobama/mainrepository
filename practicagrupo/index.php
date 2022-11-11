@@ -1,26 +1,12 @@
 <?php
-// Fichero inicial
 
-/*
-Nombre  // text 25 chars
-Apellido // text 50 chars 
-birthdate // date formato dd/mm/yyyy
-sexo // radio 
-email // email
-telefono // tel
-grado // select
-idiomas y nivel // select
-dni / nie // text
-domicilio // text
-preferencias // checkbox
-acerca de ti // textarea
-curriculem // tipe file
-fecha de inicio de las prácticas -> date
-/// Posibles Metodos
+require('./lib/Usuario.php');
 
-Calculo de potenciales empresas en funcion de la ubicacion del usuario
-Calculo de edad para fines posteriores
-*/
+    $pepe = new Usuario($_POST);
+
+    if($pepe->esValido()){
+        $pepe->crear();
+    }
 
 ?>
 
@@ -102,29 +88,12 @@ Calculo de edad para fines posteriores
                 <input type="text" name="domicilio" id="domicilio"> <br>
             </div>
 
-            <div class="inputCont checkboxs">
-                <label for="idiomas">Idiomas</label> <br>
-                    <div><input type="checkbox" name="es" id="es"> <label for="es">Español</label> </div>
-                    <div><input type="checkbox" name="en" id="en"> <label for="en">Ingles</label> </div>
-                    <div><input type="checkbox" name="fr" id="fr"> <label for="fr">Frances</label> </div>
-                    <div><input type="checkbox" name="pt" id="pt"> <label for="pt">Portugués</label> </div>
-            </div>
-
-            <div class="inputCont checkboxs">
-                <label for="preferencias">Preferencias: </label> <br>
-                    <div><input type="checkbox" name="bd" id="bd"> <label for="bd">Bases de datos</label> </div>
-                    <div><input type="checkbox" name="redes" id="redes"> <label for="redes">Redes</label> </div>
-                    <div><input type="checkbox" name="sre" id="sre"> <label for="sre">Sistemas</label> </div>
-                    <div><input type="checkbox" name="devs" id="devs"> <label for="devs">Desarrollo</label> </div>
-            </div>
-
             <div class="inputCont" style="grid-column:1/3; grid-row:4/5;">
                 <label for="">Presentacion: </label> <br>
                 <textarea name="presentacion" id="presentacion" cols="30" rows="10" placeholder="Acerca de ti ..."></textarea> <br>
             </div>
 
             <div class="inputCont" style="grid-column:1/3; grid-row:5/6;display; flex; flex-direction: column; justify-content: space-between">
-                <input type="file" name="curriculum" id="curriculum"> <label for="curriculum" id="curr">Adjuntar fichero</label>
                 <input type="submit" name="enviar" id="enviar" class="enviar">
                 <input type="button" value="enviar" id="enviarFalse" class="enviar">
             </div>
