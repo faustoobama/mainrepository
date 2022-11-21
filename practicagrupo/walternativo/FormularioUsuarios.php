@@ -19,7 +19,7 @@ class FormularioUsuarios {
 
     // Construct
 
-    // function __construct(){}
+    function __construct(){}
 
     function print(){}
 

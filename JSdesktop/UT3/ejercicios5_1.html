@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5.2</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .cont{
+            margin: 0 auto;
+            width: 600px;
+            height: fit-content;
+        }
+        .solucion{
+            width: 100%;
+            min-height: 200px;
+        }
+        #cuadroMultiColor{
+            width: 80px;
+            height: 100px;
+            background: rgb(57, 107, 57);
+        }
+        #cambiarColor{
+            width: 80px;
+            height: 20px;
+            background: rgb(13, 124, 197);
+            color: white;
+            text-align: center;
+            box-shadow: 0 0 2px black;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+        .cartas{
+            width: 100%;
+        }
+        .cartas td{
+            width: 20%;
+            height: 150px;
+            cursor: pointer;
+            background: rgba(148, 216, 148, 1);
+            box-shadow: 0 0 5px black;
+            position: relative;
+        }
+        .ok{
+            background: rgb(72, 152, 192) !important;
+        }
+        .cart1::before{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('./img/bdoro.jpg');
+            background-size: 100% 100%;
+            content: ' ';
+            top: 0;
+            left: 0;
+            transform: rotateX('45deg');
+            backface-visibility: hidden;
+        }
+        .cart2::before{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('./img/cr.jpg');
+            background-size: 100% 100%;
+            content: ' ';
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+        }
+        .cart3::before{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('./img/skrin.jpg');
+            background-size: 100% 100%;
+            content: ' ';
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+        }
+        .cart4::before{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('./img/ld.jpg');
+            background-size: 100% 100%;
+            content: ' ';
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+        }
+        .cart5::before{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('./img/modric.jpg');
+            background-size: 100% 100%;
+            content: ' ';
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cont">
+        <h3>Ejercicio 1. </h3>
+        <p>
+            Elaborar un programa que muestre un div de color verde. Cuando se presione, cambiar el color a naranja y luego de soltar el botón del mouse volver a pintar de verde.
+        </p>
+        <h4>Solucion</h4>
+        <div class="solucion">
+            <div id="cuadroMultiColor"></div>
+            <div id="cambiarColor">Cambiar color</div>
+        </div>
+        <h3>Ejercicio 2. </h3>
+        <p>
+            Se va a crear un juego, que consiste en encontrar parejas en 10 cartas con 5 parejas con imágenes de jugadores de tenis. El juego consistirá en lo siguiente:
+            La aplicación deberá tener una tabla de 2 filas y 5 columnas de un color. Además habrá un cuadro de texto con el valor 0, pero no modificable.
+        </p>
+        <ul>
+            <li>Cuando el  usuario haga clic sobre una celda, se mostrará una imagen.</li>
+            <li>Cuando el usuario haga clic sobre otra celda, se mostrará otra imagen.</li>
+            <li>Si las dos imágenes son iguales, se cambi
+                ará el color de la celda y se añadirá 1 al cuadro de texto.</li>
+            <li>Si las dos imágenes son diferentes, se ocultarán mostrando el color inicial.</li>
+        </ul>
+        <h4>Solucion</h4>
+        <div class="solucion">
+            <table class="cartas">
+                <tr>
+                    <td class="cart1"></td>
+                    <td class="cart2"></td>
+                    <td class="cart3"></td>
+                    <td class="cart4"></td>
+                    <td class="cart5"></td>
+                </tr>
+                <tr>
+                    <td class="cart1"></td>
+                    <td class="cart2"></td>
+                    <td class="cart3"></td>
+                    <td class="cart4"></td>
+                    <td class="cart5"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+</body>
+<script>
+    'use strict';
+
+    let botonCambiaColores = document.getElementById('cambiarColor'),
+        recuadro = document.getElementById('cuadroMultiColor'),
+        vueltas=0,valorAComparar;
+
+    botonCambiaColores.addEventListener('mousedown',(e)=>{
+        recuadro.style.background = 'rgb(226, 78, 32)';
+    });
+    botonCambiaColores.addEventListener('mouseup',()=>{
+        recuadro.style.background = 'rgb(57, 107, 57)';
+    });
+
+    // Ejercicio 2
+
+    document.addEventListener('click',(e)=>{
+        console.log('Iniciando comparacion');
+        if(vueltas == 0){
+            valorAComparar = e.target.className;
+            vueltas++;
+        }else{
+            if(valorAComparar == e.target.className){
+                console.log('Coinciden');
+
+                console.log(document.querySelectorAll('.'+(e.target.className)));
+
+                document.querySelectorAll('.'+(e.target.className)).forEach( elemento => {
+                    elemento.className += ' ok';
+                });
+
+            }
+                valorAComparar = '';
+                vueltas=0;
+        }
+    });
+
+</script>
+</html>
