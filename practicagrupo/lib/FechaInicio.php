@@ -2,7 +2,7 @@
 
 class FechaInicio extends Texto{
 
-    private $now;
+    private $now='';
 
     function __construct($value){
         parent::__construct($value);
@@ -10,7 +10,7 @@ class FechaInicio extends Texto{
     }
 
     function isValid(){
-        return (intval($this->getValue().explode("/")[0]) >= ($now.explode('/')[0]) + 7);
+       // return (intval($this->getValue().explode("/")[0]) >= ($now.explode('/')[0]) + 7);
     }
 
 }
