@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios 5.2</title>
+    <style>
+        #banner{
+            opacity: 0;
+            transition: opacity .6s;
+            left: 0;
+            right: 0;
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            padding: 8px;
+            background: rgb(94, 165, 203);
+            color: white;
+            box-shadow: 5px 5px 5px black;
+            border-radius: 5px;
+        }
+        span{
+            font-size: 13px;
+            text-shadow: 2px 2px 2px black;
+        }
+    </style>
+</head>
+<body>
+    <div id="banner">
+        <span>Client X: </span><span id="x"></span>
+        <br>
+        <span>Client Y: </span><span id="y"></span>
+
+        <span>Screen X: </span><span id="xr"></span>
+        <br>
+        <span>Screen Y: </span><span id="yr"></span>
+    </div>
+</body>
+<script>
+    'use strict';
+    let banner = document.getElementById('banner'),
+        elementoX = document.getElementById('x'),
+        elementoY = document.getElementById('y'),
+        elementoXr = document.getElementById('xr'),
+        elementoYr = document.getElementById('yr');
+
+    document.addEventListener('mousemove',e=>{
+
+        elementoX.innerText = e.clientX;
+        elementoY.innerText = e.clientY;
+        elementoXr.innerText = e.screenX;
+        elementoYr.innerText = e.screenY;
+
+        // Agregamos un banner que imprima las coordenadas y que sea dinamico
+        if(e.clientY +110 < window.innerHeight){
+            banner.style.top = e.clientY+10+'px';
+        }
+        if(e.clientX +110 < window.innerWidth){
+            banner.style.left = e.clientX+10+'px';
+        }
+        banner.style.opacity = '1';
+
+    })
+
+   
+</script>
+</html>
