@@ -18,9 +18,9 @@ class Coche {
 
     public function setMatricula ($matricula){$this->matricula=$matricula;}
     public function getMatricula (){return $this->matricula;}
-    public function setmarca ($marca){$this->carga=$carga;}
+    public function setmarca ($marca){$this->marca=$marca;}
     public function getMarca (){return $this->marca;}
-    public function setCarga ($carga){$this->marca=$marca;}
+    public function setCarga ($carga){$this->carga=$carga;}
     public function getCarga (){return $this->carga;}
 }
 ?>

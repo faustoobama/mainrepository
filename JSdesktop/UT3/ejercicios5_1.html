@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 5.2</title>
     <style>
-        *{margin: 0;padding: 0;}
+        *{margin: 0;padding: 0;list-style: none;}
         .cont{
-            margin: 0 auto;
+            margin: 25px auto 50px auto;
             width: 600px;
             height: fit-content;
         }
         .solucion{
             width: 100%;
-            min-height: 200px;
+            min-height: 100px;
+            margin: 10px 0;
         }
         #cuadroMultiColor{
             width: 80px;
@@ -33,73 +34,66 @@
         }
         .cartas{
             width: 100%;
+            height: 333px;
+            display: grid;
+            grid-template-columns: repeat(5,18%);
+            grid-template-rows: repeat(2,47%);
+            column-gap: 2%;
+            row-gap: 5%;
+            perspective: 1000px;
+            transform-style: preserve-3d;
         }
-        .cartas td{
-            width: 20%;
-            height: 150px;
+        .cartas > div{
+            width: 100%;
+            height: 100%;
             cursor: pointer;
             background: rgba(148, 216, 148, 1);
             box-shadow: 0 0 5px black;
             position: relative;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            transition: .6s;
         }
         .ok{
-            background: rgb(72, 152, 192) !important;
+            transform: rotateY(180deg) !important;
         }
         .cart1::before{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('./img/bdoro.jpg');
-            background-size: 100% 100%;
-            content: ' ';
-            top: 0;
-            left: 0;
-            transform: rotateX('45deg');
-            backface-visibility: hidden;
+            background-image: url('https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg?auto=compress&cs=tinysrgb&w=400');
         }
         .cart2::before{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('./img/cr.jpg');
-            background-size: 100% 100%;
-            content: ' ';
-            top: 0;
-            left: 0;
-            backface-visibility: hidden;
+            background-image: url('https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg?auto=compress&cs=tinysrgb&w=400');
         }
         .cart3::before{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('./img/skrin.jpg');
-            background-size: 100% 100%;
-            content: ' ';
-            top: 0;
-            left: 0;
-            backface-visibility: hidden;
+            background-image: url('https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg?auto=compress&cs=tinysrgb&w=400');
         }
         .cart4::before{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('./img/ld.jpg');
-            background-size: 100% 100%;
-            content: ' ';
-            top: 0;
-            left: 0;
-            backface-visibility: hidden;
+            background-image: url('https://images.pexels.com/photos/230629/pexels-photo-230629.jpeg?auto=compress&cs=tinysrgb&w=400');
         }
         .cart5::before{
+            background-image: url('https://images.pexels.com/photos/1624438/pexels-photo-1624438.jpeg?auto=compress&cs=tinysrgb&w=400'); 
+        }
+        ul{
+            margin: 5px 0 0 10px;
+        }
+        h3,h4,h5{
+            margin: 10px 0;
+        }
+        .cartas > div::before{
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('./img/modric.jpg');
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
             background-size: 100% 100%;
             content: ' ';
             top: 0;
             left: 0;
+            transform: rotateY(180deg);
             backface-visibility: hidden;
+            border: 4px solid rgb(121, 121, 121);
+        }
+        input{
+            margin: 0 auto;
+            text-align: center;
+            width: 30px;
         }
     </style>
 </head>
@@ -123,39 +117,40 @@
         <ul>
             <li>Cuando el  usuario haga clic sobre una celda, se mostrará una imagen.</li>
             <li>Cuando el usuario haga clic sobre otra celda, se mostrará otra imagen.</li>
-            <li>Si las dos imágenes son iguales, se cambi
-                ará el color de la celda y se añadirá 1 al cuadro de texto.</li>
+            <li>Si las dos imágenes son iguales, se cambiará el color de la celda y se añadirá 1 al cuadro de texto.</li>
             <li>Si las dos imágenes son diferentes, se ocultarán mostrando el color inicial.</li>
         </ul>
         <h4>Solucion</h4>
         <div class="solucion">
-            <table class="cartas">
-                <tr>
-                    <td class="cart1"></td>
-                    <td class="cart2"></td>
-                    <td class="cart3"></td>
-                    <td class="cart4"></td>
-                    <td class="cart5"></td>
-                </tr>
-                <tr>
-                    <td class="cart1"></td>
-                    <td class="cart2"></td>
-                    <td class="cart3"></td>
-                    <td class="cart4"></td>
-                    <td class="cart5"></td>
-                </tr>
-            </table>
+            <div class="cartas">
+                    <div class="cart1"></div>
+                    <div class="cart5"></div>
+                    <div class="cart3"></div>
+                    <div class="cart4"></div>
+                    <div class="cart5"></div>
+                    <div class="cart4"></div>
+                    <div class="cart2"></div>
+                    <div class="cart2"></div>
+                    <div class="cart3"></div>
+                    <div class="cart1"></div>
+            </div>
         </div>
+        <label for="aciertos">Numero de aciertos: </label> <input type="number" id="aciertos" name="aciertos" value="0" disabled>
     </div>
     
 </body>
 <script>
     'use strict';
+    
+    let botonCambiaColores = document.getElementById('cambiarColor'), // Boton del Ej 1 para cambiar los colores 
+        recuadro = document.getElementById('cuadroMultiColor'), // Recuadro del ejercicio 1 cuyo color cambiará al accionar el botón
+        comparando=false, // Booleano del Ej 2 que servira determinar si ya fue presionada una carta
+        valorAComparar, // Valor a comparar del Ej 2 en el que se almacenará la primera carta de las dos a compararse
+        cuentatras, // Cuenta atras del Ej 2 para restablecer las cartas volteadas en caso de que no coincidan
+        carta=[], // Arreglo del Ej 2 donde se almacenarán las cartas a voltear
+        aciertos = document.getElementById('aciertos'); // Elemento del Ej 2 en el que se almacenará el número de aciertos
 
-    let botonCambiaColores = document.getElementById('cambiarColor'),
-        recuadro = document.getElementById('cuadroMultiColor'),
-        vueltas=0,valorAComparar;
-
+    // Ejercicio 1
     botonCambiaColores.addEventListener('mousedown',(e)=>{
         recuadro.style.background = 'rgb(226, 78, 32)';
     });
@@ -166,24 +161,25 @@
     // Ejercicio 2
 
     document.addEventListener('click',(e)=>{
-        console.log('Iniciando comparacion');
-        if(vueltas == 0){
-            valorAComparar = e.target.className;
-            vueltas++;
+       if(e.target.className.match(/cart[12345]/)){
+        if(!comparando){
+            valorAComparar = e.target;
+            comparando=true;
+            valorAComparar.classList.add('ok');
         }else{
-            if(valorAComparar == e.target.className){
-                console.log('Coinciden');
-
-                console.log(document.querySelectorAll('.'+(e.target.className)));
-
-                document.querySelectorAll('.'+(e.target.className)).forEach( elemento => {
-                    elemento.className += ' ok';
-                });
-
+            e.target.classList.add('ok');
+            if(valorAComparar.className == e.target.className){
+                comparando=false;
+                aciertos.value++;            }else{
+                carta[0] = valorAComparar;
+                carta[1] = e.target;
+                cuentatras = setTimeout(()=>{
+                    carta.forEach(element => element.classList.remove('ok'));
+                },500);
+                comparando=false;
             }
-                valorAComparar = '';
-                vueltas=0;
         }
+       }
     });
 
 </script>

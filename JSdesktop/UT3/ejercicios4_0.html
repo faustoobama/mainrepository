@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .cont{
+            margin: 0 auto;
+            width: 600px;
+            height: fit-content;
+            text-align: justify;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .botones{
+            display: block;
+            width: 200px;
+            height: 40px;
+            text-align: center;
+            background: rgb(108, 153, 232);
+            cursor: pointer;
+            color: white;
+            line-height: 40px;
+            margin-top: 20px;
+        }
+        .apartados{
+            text-align: justify;
+            width: 400px;
+            margin: 20px 0;
+            color: rgb(31, 33, 59);
+        }
+        h4{
+            margin: 20px 0;
+            color: rgb(26, 35, 63);
+        }
+        h5{
+            margin: 20px 0;
+            color: rgb(61, 73, 109);
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <h4>1.- La empresa Dolty S.A., tiene tres delegaciones en tres provincias andaluzas
+            (Sevilla, Huelva, Cadiz). Cada una de ellas tiene un numero variado de
+            empleados, que no es inferior a 4 en ninguna de ellas. Realiza un programa que
+            cargue el sueldo de los empleados, junto a su nombre, de cada una de las delegaciones en una array
+            distinto. Para finalizar la carga de cada array se ingresa como dato el cero.
+            Una vez ingresados los sueldos, mostrar los siguientes datos:
+        </h4>
+
+        <h5>
+            a) Informar del tamaño (numero de empleados) de cada una de las delegaciones.
+        </h5>
+
+        <div class="botones" id="a"> Ejecutar el partado A</div>
+        <div id="apartadoA" class="apartados"></div>
+        <h5>
+            b) Informar del tamaño (numero de empleados) de cada una de las delegaciones.
+        </h5>
+        <div class="botones" id="b"> Ejecutar el partado b</div>
+        <div id="apartadoB" class="apartados"></div>
+        <h5>
+            c) Informar del tamaño (numero de empleados) de cada una de las delegaciones.
+        </h5>
+        <div class="botones" id="c"> Ejecutar el partado C</div>
+        <div id="apartadoC" class="apartados"></div>
+        <h5>
+            d) Informar del tamaño (numero de empleados) de cada una de las delegaciones.
+        </h5>
+        <div class="botones" id="d"> Ejecutar el partado D</div>
+        <div id="apartadoD" class="apartados"></div>
+    </div>
+</body>
+<script>
+    let comunidades = ['huelva','cadiz','sevilla'],
+    limitEmp = 0,
+    empleados = {
+    huelva: [],
+    cadiz: [],
+    sevilla: []
+    },
+    empleado={};
+    function definirEmpleados(){
+        comunidades.forEach((zona)=>{
+            do{
+                empleado = {nombre: '',sueldo: 0};
+
+                empleado.nombre = prompt('Indique el nombre de empleado de '+ zona +':');
+
+                if(empleado.nombre != '0' && empleado.nombre != ''){
+
+                    empleado.sueldo = parseFloat(prompt('Indique el sueldo del empleado de '+ zona +':'));
+
+                    if(!isNaN(empleado.sueldo)){
+                        
+                        empleados[zona].push(empleado);
+                    }
+                }
+            }
+            while(empleados[zona].length < limitEmp || empleado.nombre != '0');
+        });
+    
+    }
+
+     definirEmpleados();
+
+    function cantidadEmpleados(){
+        document.querySelector('#apartadoA').innerHTML = '';
+        comunidades.forEach((zona)=>{
+            document.querySelector('#apartadoA').innerHTML += 'En ' + zona + ' se encuentran activos ' + empleados[zona].length + ' empleados <br>';
+    })}
+    
+    function mediaSueldos(){
+        document.querySelector('#apartadoB').innerHTML = '';
+        let media;
+        comunidades.forEach((zona)=>{
+            media = 0;
+            empleados[zona].forEach(e=>{
+                media += parseFloat(e.sueldo);
+            })
+            document.querySelector('#apartadoB').innerHTML += 'La media de salarios en ' + zona + ' es ' + (media/empleados[zona].length) +' <br>';
+        })
+    }
+    
+    function sueldosOrdenados(){
+        document.querySelector('#apartadoC').innerHTML = '';
+        let sueldos;
+        comunidades.forEach((zona)=>{
+            sueldos=[];
+            empleados[zona].forEach(e => {
+                sueldos.push(e.sueldo);
+            });
+            document.querySelector('#apartadoC').innerHTML +='Los sueldos en '+ zona + ' ordenados de menor a mayor serían '+sueldos.sort((a,b)=>{return a - b})+'<br>';
+        })
+    }
+
+    function mayorSueldo(){
+        document.querySelector('#apartadoD').innerHTML = '';
+        let sueldos=[];
+        comunidades.forEach((zona)=>{
+            empleados[zona].forEach(e => {
+                sueldos.push(e.sueldo);
+            });
+        })
+        document.querySelector('#apartadoD').innerHTML ='El mayor sueldo es de '+sueldos.sort((a,b)=>{return b - a})[0]+'<br>';
+    }
+
+    document.addEventListener('click',(e)=>{
+        switch(e.target.id){
+            case 'a':cantidadEmpleados();
+            break;
+            case 'b':mediaSueldos();
+            break;
+            case 'c':sueldosOrdenados();
+            break;
+            case 'd':mayorSueldo();
+            break;
+        }
+    });
+    </script>
+</html>
