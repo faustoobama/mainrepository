@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina principal</title>
+    <style>
+        *{
+            text-decoration: none;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+        #container{
+            position: relative;
+            margin: 30px auto;
+            width: 70%;
+            min-width: 280px;
+            max-width: 1000px;
+            min-height: 300px;
+            text-align: center;
+        }
+        #cookieBanner{
+            display: none;
+            position: absolute;
+            width: 222px;
+            min-height: 80px;
+            background-color: rgb(193, 244, 244);
+            left: calc(50% - 111px);
+            bottom: 0;
+            padding: 10px;
+            text-align: center;
+            color: rgb(76, 76, 76);
+        }
+        input{
+            margin: 15px 20px 0 20px;
+            padding: 2px 5px;
+            cursor: pointer;
+        }
+        #aceptar{
+            background-color: rgb(3, 199, 124);
+        }
+        #rechazar{
+            background-color: rgb(172, 36, 36);
+        }
+        .buttons{
+            color: rgb(255, 255, 255);
+            width: 60px;
+            height: 25px;
+            padding: 2px 3px;
+        }
+        #acceder{
+            background-color: rgb(3, 199, 124);
+            padding: 5px 10px;
+            margin: 50px 0 0 0;
+        }
+        #acceder > a{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Bienvenido!</h1>
+
+        <button id="acceder"> <a href="verificacion.html">Acceder</a> </button>
+        <div id="cookieBanner">
+            <p>Este es un mensaje por aleatorio para el banner de cookies</p>
+            <input type="button" class="buttons" value="aceptar" id="aceptar"><input type="button" class="buttons" value="rechazar" id="rechazar">
+        </div>
+    </div>
+</body>
+<script>
+    'use strict';
+
+    let cookieBanner = document.querySelector('#cookieBanner'),
+        aceptar = document.querySelector('#aceptar'),
+        rechazar = document.querySelector('#rechazar');
+
+    if(!document.cookie){
+        cookieBanner.style.display = 'block';
+    }else{
+        if(document.cookie != 'verificar=aceptar'){
+            document.getElementsByTagName('h1')[0].insertAdjacentHTML('afterend','<h3>Es necesario aceptar las cookies</h3>')
+        }
+    }
+
+    aceptar.addEventListener('click',sendCookie);
+    rechazar.addEventListener('click',sendCookie);
+
+    function sendCookie(e){
+        fetch('index.php?verificar='+e.target.id);
+        cookieBanner.style.display = 'none';
+    }
+
+
+</script>
+</html>
