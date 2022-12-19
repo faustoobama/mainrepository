@@ -8,10 +8,9 @@
     $userid;
     $username;
     $useremail;
-    $userpass;
 
     try {
-        $prepQuery = $connection->prepare('SELECT id, name, email FROM users WHERE (name = :nameemail OR email = :nameemail) AND password = :pass;');
+        $prepQuery = $connection->prepare('SELECT id, name, email FROM users WHERE (username = :nameemail OR email = :nameemail) AND password = :pass;');
         $prepQuery->bindParam(':nameemail',$dataUser);
         $prepQuery->bindParam(':pass',$dataPass);
         $prepQuery->execute();
