@@ -70,21 +70,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            border-radius: 5px;
         }
         .inputdata{
             padding-left: 8px;
             width: calc(100% - 10px);
             border: 1px solid rgb(131, 131, 131);
-            height: 33px;
+            height: 36px;
             margin-bottom: 10px;
         }
         #newEntertainment > textarea{
             padding: 8px 0 0 8px;
             width: calc(100% - 10px);
             border: 1px solid rgb(131, 131, 131);
-            height: 50px;
+            height: 88px;
             resize: vertical;
             margin-top: 10px;
         }
