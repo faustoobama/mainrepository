@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            border: none;
+            outline: none;
+        }
+        p{
+            color: rgb(43, 171, 166);
+            font-size: 36px;
+            margin-bottom: 11px;
+        }
+        #cont{
+            width: 100%;
+            min-height: 500px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #form{
+            min-width: 240px;
+            max-width: 333px;
+            width: 80%;
+            min-height: 344px;
+        }
+        #form > input {
+            display: block;
+            width: 100%;
+        }
+
+        #user,#pass{
+            margin-top: 50px;
+            border-bottom: 4px solid rgb(148, 150, 150);
+            height: 44px;
+            font-size: 20px;
+            text-align: center;
+        }
+        #enviar{
+            border-radius: 4px;
+            margin-top: 30px;
+            height: 44px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(43, 171, 166);
+            cursor: pointer;
+            transition: .1s;
+            font-size: 22px;
+        }
+        #enviar:hover{
+            color: rgb(43, 171, 166);
+            border: 1px solid rgb(43, 171, 166);
+            background-color: rgb(255, 255, 255);
+        }
+        #enviar:active {
+            color: rgb(255, 255, 255);
+            border: none;
+            box-shadow: 0px 1px 3px black inset;
+            background-color: rgb(175, 76, 36);
+            cursor: pointer;
+        }
+        .warning{
+            position: relative;
+            width: calc(100% - 20px);
+            min-height: 33px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px; 
+            background-color: rgb(218, 51, 51);
+            color: white;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        .closeWarning{
+            right: 10px;
+            top: 5px;   
+            position: absolute;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav></nav>
+    <div id="cont">
+        <p>Inicio de Sesion</p>
+        <form id="form">
+            <input type="text" name="user" id="user" placeholder="username">
+
+            <input type="password" name="pass" id="pass" placeholder="Password">
+
+            <input type="button" value="Login" id="enviar">
+        </form>
+    </div>
+</body>
+<script>
+    'use strict';
+    let form = document.querySelector('#form'),
+        enviar = document.querySelector('#enviar'),
+        formData;
+
+        enviar.addEventListener('click',(e)=>{
+        formData = new FormData(form);
+        fetch('../back/login.php',{
+            method: 'post',
+            body: JSON.stringify({
+                user: formData.get('user'),
+                pass: formData.get('pass')
+            }),
+            header:{
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status == 200){
+                location.href = 'inicio.html';
+                form.reset();
+            }else{
+                let element = `
+                    <div class='warning'>
+                        <span class='closeWarning' id='loginWarning'>x</span>
+                        ${data.message}
+                        </div>`;
+
+                if(!document.querySelector('.warning')){
+                    form.insertAdjacentHTML('beforeend',element);
+                }else {
+                    document.querySelector('.warning').remove();
+                    form.insertAdjacentHTML('beforeend',element);
+                }
+
+                let loginWarning = document.querySelector('#loginWarning');
+                loginWarning.addEventListener('click',(e)=>{
+                    e.target.parentNode.remove();
+                });
+            }
+        });
+    });
+</script>
+</html>
