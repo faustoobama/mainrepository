@@ -152,7 +152,7 @@
 
             <input type="password" name="pass" id="confirmpass" placeholder="confirm password" class="inputData">
 
-            <input type="button" value="Login" id="register" class="submitButton">
+            <input type="button" value="Login" id="registerButton" class="submitButton">
 
             <div class="gotoRegistration"><h4 id="gotoLogin" class="goTo">Ir a inicio de sesion</h4></div>
         </form>
@@ -162,7 +162,9 @@
 <script>
     'use strict';
     let logIn = document.querySelector('#logIn'),
+        signIn = document.querySelector('#signIn'),
         loginButton = document.querySelector('#loginButton'),
+        registerButton = document.querySelector('#registerButton'),
         gotoRegistration = document.querySelector('#gotoRegistration'),
         gotoLogin = document.querySelector('#gotoLogin'),
         formData;
@@ -183,6 +185,38 @@
             .then(data => {
                 if(data.status == 200 || data.message == 'Logged'){
                     location.href = './front/inicio.php';
+                    logIn.reset();
+                }else{
+                    let element = `
+                        <div class='warning'>
+                            <span class='closeWarning' id='loginWarning'>x</span>
+                            ${data.message}
+                            </div>`;
+
+                    if(!document.querySelector('.warning')){
+                        logIn.insertAdjacentHTML('beforeend',element);
+                    }else {
+                        document.querySelector('.warning').remove();
+                        logIn.insertAdjacentHTML('beforeend',element);
+                    }
+
+                    let loginWarning = document.querySelector('#loginWarning');
+                    loginWarning.addEventListener('click',(e)=>{
+                        e.target.parentNode.remove();
+                    });
+                }
+            });
+        });
+        registerButton.addEventListener('click',(e)=>{
+            formData = new FormData(signIn);
+            fetch('./back/newUser.php',{
+                method: 'post',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.status == 200 || data.message == 'Added'){
+                    location.href = './index.html';
                     logIn.reset();
                 }else{
                     let element = `
