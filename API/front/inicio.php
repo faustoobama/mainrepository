@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['username'])){
-        header('Location:login.html');
+        header('Location:../index.html');
     }else {
 ?>
     <!DOCTYPE html>
@@ -187,7 +187,7 @@
             .then(response => response.json())
             .then(res => {
                 if (res.status == 403) {
-                    location.href = 'login.html';
+                    location.href = '../index.html';
                 }else if (res.status == 404){
                     console.log(res.message);
                 }else if (res.status == 200) {
@@ -205,14 +205,14 @@
         function addGame(){
             let form = document.querySelector('#newEntertainment');
                 
-            fetch('../back/newGame.php',{
+            fetch('./back/newGame.php',{
                 method: 'POST',
                 body: new FormData(form)
             })
             .then(response => response.json())
             .then(res => {
                 if (res.status == 403) {
-                    location.href = 'login.html';
+                    location.href = '../index.html';
                 }else if (res.status == 404){
                     console.log(res.message);
                 }else if (res.status == 200){
@@ -240,7 +240,7 @@
         }
 
         function logOf(){
-            fetch('../back/logof.php')
+            fetch('./back/logof.php')
             .then(res => location.href = 'login.html');
         }
 

@@ -27,7 +27,7 @@
                 $_SESSION['userid'] = $userid;
                 $_SESSION['useremail'] = $useremail;
 
-                echo json_encode(['status'=> 200, 'message'=>'Bienvenido '.$username]);
+                echo json_encode(['status'=> 200, 'message'=>'Logged']);
 
         }else echo json_encode(['status'=> 403, 'message'=>'Credenciales incorrectas']);
     } catch (PDOException $e) {
