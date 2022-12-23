@@ -2,6 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['username'])){
+        setcookie('url',$_SERVER['REQUEST_URI']);
         header('Location:../index.html');
     }else {
 ?>
@@ -240,8 +241,8 @@
         }
 
         function logOf(){
-            fetch('./back/logof.php')
-            .then(res => location.href = 'login.html');
+            fetch('../back/logof.php')
+            .then(res => location.href = '../index.html');
         }
 
     </script>

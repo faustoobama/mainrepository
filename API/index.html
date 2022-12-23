@@ -167,7 +167,17 @@
         registerButton = document.querySelector('#registerButton'),
         gotoRegistration = document.querySelector('#gotoRegistration'),
         gotoLogin = document.querySelector('#gotoLogin'),
-        formData;
+        formData,$url;
+    fetch('./back/verify.php')
+    .then(res => res.json())
+    .then(data => {
+        if(data){
+            $url = data;
+        }
+    })
+    if(getCookieValue('url')){
+        $url = getCookieValue('url');
+    }else $url = './front/inicio.php';
 
         loginButton.addEventListener('click',(e)=>{
             formData = new FormData(logIn);
@@ -184,7 +194,7 @@
             .then(res => res.json())
             .then(data => {
                 if(data.status == 200 || data.message == 'Logged'){
-                    location.href = './front/inicio.php';
+                    location.href = $url;
                     logIn.reset();
                 }else{
                     let element = `
@@ -239,6 +249,19 @@
                 }
             });
         });
+
+        function getCookieValue(name){
+            let cookies = document.cookie.split(';'),
+                value='';
+
+            cookies.forEach(cookie =>{
+                if(cookie.includes(name)){
+                    value = cookie.substring(name.length,cookie.length).replace('=','');
+                }
+            });
+
+            return value;
+        }
 
         gotoRegistration.addEventListener('click',()=>{
             document.querySelectorAll('.form').forEach(e =>{
