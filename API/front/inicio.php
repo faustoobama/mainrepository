@@ -243,6 +243,7 @@
         function logOf(){
             fetch('../back/logof.php')
             .then(res => location.href = '../index.html');
+<<<<<<< HEAD
         }
         function getCookie(name){
             let cookies = document.cookie.split(';'),
@@ -254,6 +255,8 @@
                 }
             return value;
             });
+=======
+>>>>>>> 1c94d687e7d9c2d653a3de177555fb310527b2c8
         }
 
     </script>

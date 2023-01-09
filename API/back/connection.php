@@ -2,8 +2,8 @@
 $port = 3306;
 $dbname='entertainment';
 $host = 'mysql:host=localhost:' . $port . ';dbname='.$dbname;
-$user = 'admin';
-$pass = 'admin';
+$user = 'root';
+$pass = '';
 
 try {
     $connection = new PDO($host,$user,$pass);

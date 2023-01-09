@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://images.squarespace-cdn.com/content/v1/5f6b4b0c38cfbb7e2af14d5e/1603201117078-NBQMAKFHLLD7N4QXMLQR/thyme-sprig.png?format=1500w" type="image/x-icon">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+        
+        @font-face {
+            font-family: 'Linearicons-Free';
+            src:url('fonts/Linearicons-Free.eot?w118d');
+            src:url('fonts/Linearicons-Free.eot?#iefixw118d') format('embedded-opentype'),
+                url('fonts/Linearicons-Free.woff2?w118d') format('woff2'),
+                url('fonts/Linearicons-Free.woff?w118d') format('woff'),
+                url('fonts/Linearicons-Free.ttf?w118d') format('truetype'),
+                url('fonts/Linearicons-Free.svg?w118d#Linearicons-Free') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            --var-mainbgc: rgba(255, 246, 235,1);
+            --var-secbgc: rgb(148, 102, 45);
+            --var-fontc: rgb(67, 42, 11);
+            --var-navHeight: 144px;
+        }
+        *::-webkit-scrollbar{
+            width: 14px;
+        }
+        *::-webkit-scrollbar-thumb{
+            background-color: rgb(241, 216, 197);
+        }
+        #navContainer{
+            width: 100%;
+            display: grid;
+            grid-template-columns:36% 20% 36%;
+            grid-template-rows: fit-content;
+            align-items: center;
+            justify-content: center;
+            height: var(--var-navHeight);
+            background: var(--var-mainbgc);
+            top: 0;
+            left: 0;
+            position: sticky;
+            z-index: 4;
+        }
+        .navbarElement{
+            width: 100%;
+            display: flex;
+        }
+        .Icon{
+            justify-content: center;
+        }
+        .User{
+            justify-content: end;
+        }
+        #mainContainer{
+            width: 100%;
+            min-height: calc(100vh - var(--var-navHeight));
+            color: var(--var-fontc);
+        }
+        .menu{
+            position: relative;
+            font-family: 'Outfit';
+            font-size: 20px;
+            width: fit-content;
+            padding: 0 20px;
+        }
+        span{
+            cursor: pointer;
+        }
+        .profile-logof > li:hover, span:hover{
+            color: brown;
+        }
+        .pipe{
+            margin: 0 20px;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .elements{
+            width: 100%;
+        }
+        #mainPageImage{
+            background: transparent;
+            height: 777px;
+        }
+        #mainPageImage::before{
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            position: fixed;
+            content: ' ';
+            background-image: url('./img/mainImg.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: 0 -200px;
+        }
+        #mainPageIntro{
+            background: var(--var-mainbgc);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            height: 500px;
+
+        }
+        .subMenu{
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            width: max-content;
+            background: var(--var-mainbgc);
+            transition: opacity .3s ease-in-out;
+            padding: 0 20px;
+        }
+        .profile-logof{
+            position: absolute;
+            left: 0;
+            width: max-content;
+            background: var(--var-mainbgc);
+            transition: opacity .3s ease-in-out;
+            padding: 0 20px;
+        }
+        .subMenu > li{
+            margin: 20px 0;
+            padding-right: 50px;
+            width: fit-content;
+        }
+        .menu:hover > .subMenu{
+            visibility: visible;
+            opacity: 1;
+        }
+        .introTitle{
+            font-size: 50px;
+            width: 33%;
+            padding: 50px 50px 50px 0;
+            border-bottom: 2px solid var(--var-fontc);;
+        }
+        .introBody{
+            padding: 50px 50px 50px 0;
+            font-size: 22px;
+            width: 33%;
+        }
+        .categorys{
+            position: relative;
+            width: 100%;
+            height: 777px;
+            background: var(--var-secbgc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 30px;
+        }
+        .carruselFrame{
+            position: relative;
+            width: 444px;
+            height: 70%;
+            overflow: hidden;
+        }
+        #carete{
+            --num-elements: 3;
+            position: relative;
+            width: calc(100% * var(--num-elements));
+            height: 100%;
+            margin-left: -100%;
+            display: flex;
+        }
+        .carruselElement{
+            position: relative;
+            width: calc(101% / var(--num-elements));
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            cursor: pointer;
+        }
+        .carruselText{
+            position: relative;
+            width: 333px;
+            height: 70%;
+            color: white;
+        }
+        #chardware{
+            background-image: url('./img/hardware.jpg');
+        }
+        #cgames{
+            background-image: url('./img/juegos.jpg');
+        }
+        #cfilms{
+            background-image: url('./img/cine.jpg');
+        }
+        .arrows{
+            cursor: pointer;
+            font-size: 33px;
+            font-weight: bolder;
+        }
+        .arrows:hover{
+            color: rgb(108, 211, 170);
+            transition: .3s;
+        }
+        #leftArrow::before{
+            content: '\e889';
+        }
+        #rightArrow::before{
+            content: '\e88a';
+        }
+        .carruselArrowsCont{
+            position: absolute;
+            bottom: 0%;
+            right: 0;
+            width: 26%;
+            height: 50px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family: 'Linearicons-Free';
+            color: var(--var-mainbgc);
+            background: var(--var-secbgc);
+            border-top-left-radius: 30px;
+        }
+        .carruselTextTitle{
+            position: absolute;
+            width: 100%;
+            font-size: 33px;
+            height: 26%;
+            top: 44px;
+            background: var(--var-mainbgc);
+            color: var(--var-secbgc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carruselTextBody{
+            font-size: 30px;
+            position: absolute;
+            left: 22%;
+            color: var(--var-mainbgc);
+            background: var(--var-secbgc);
+            bottom: 26%;
+            width: 111%;
+            height: 222px;
+            padding: 20px;
+            z-index: 3;
+        }
+        #footer{
+            width: 100%;
+            min-height: 600px;
+            background: var(--var-mainbgc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #footerMenuCont{
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+            color: var(--var-fontc);
+        }
+        .fmenu{
+            font-family: 'Outfit';
+            font-size: 22px;
+            cursor: pointer;
+        }
+        #topics{
+            display: grid;
+            grid-template-columns: repeat(3,20%);
+            grid-template-rows: auto;
+            justify-content: center;
+            gap: 44px;
+            padding: 100px 0;
+        }
+        .tcard{
+            position: relative;
+            width: 100%;
+            min-height: 400px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 11px;
+        }
+        .tcardImg{
+            width: 100%;
+            height: 222px;
+        }
+        .tcardTitle{
+            font-size: 40px;
+        }
+        .tcardResum{
+            font-size: 22px;
+        }
+        .tcardPostedBy{
+            font-size: 22px;
+        }
+        .tcardFooter{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            height: 33px;
+
+        }
+        .tcardButton{
+            height: 100%;
+            width: 80px;
+            background: var(--var-secbgc);
+            color: var(--var-mainbgc);
+            border: none;
+            cursor: pointer;
+        }
+        .tcardComments{
+            width: 50%;
+            display: flex;
+            font-size: 22px;
+        }
+        .comment-icon{
+            display: block;
+            position: relative;
+            font-family: 'Linearicons-Free';
+            width: 33px;
+            height: 33px;
+        }
+        .comment-icon::before{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            content: '\e83f';
+        }
+        .profile-logof > li{
+            margin: 20px 0;
+            width: 100%;
+        }
+        .user{
+            min-width: 100px;
+        }
+        .profile-logof{
+            width: max-content;
+        }
+        .no-visible{
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+        .visible{
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        .mainIcon{
+            --var-iconDimetion: 70px;
+            display: block;
+            height: var(--var-iconDimetion);
+            width: var(--var-iconDimetion);
+            background: url('https://images.squarespace-cdn.com/content/v1/5f6b4b0c38cfbb7e2af14d5e/1603201117078-NBQMAKFHLLD7N4QXMLQR/thyme-sprig.png?format=1500w');
+            background-size: 100% 100%;
+        }
+        #topic{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 333px;
+            background: var(--var-mainbgc);
+            font-size: 24px;
+            font-family: 'Source Sans Pro';
+            font-weight: bolder;
+        }
+        #topic > p {
+            text-align: center;
+            width: 50%;
+            padding: 50px;
+            border-top: 2px solid burlywood;
+            margin-top: 50px;
+        }
+        .carruseEcaption{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            padding: 30px 50px 10px 10px;
+            bottom: 0;
+            width: 66%;
+            background: var(--var-mainbgc);
+            height: 130px;
+            color: var(--var-secbgc);
+            font-size: 22px;
+        }
+        /*****/
+        #loginCont,#signinCont{
+            width: 100%;
+            min-height: 720px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 0;
+        }
+        .loginSigninMainTitle{
+            font-size: 50px;
+            margin: 50px 0;
+        }
+        .notAut{
+            background: red;
+            width: 100%;
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 44px;
+            padding: 10px;
+        }
+        .validInput{
+            color: rgb(35, 217, 65);
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+        }
+        .invalidInput{
+            color: red;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+        }
+        #loginForm,#signinForm{
+            position: relative;
+            width: 44%;
+            max-width: 600px;   
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #loginForm > div,#signinForm > div{
+            position: relative;
+            width: 100%;
+            height: 144px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+        }
+        .loginInputs{
+            width: calc(100% - 20px);
+            height: 80%;
+            border: 1px solid var(--var-secbgc);
+            outline: none;
+            padding-left: 18px;
+            font-size: 16px;
+        }
+        #sendCredentials,#signInButton{
+            width: 100%;
+            height: 80%;
+            border: none;
+            border: 1px solid var(--var-secbgc);
+            background: var(--var-secbgc);
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            font-size: 25px;
+        }
+        .loginLabels{
+            height: 40%;
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            padding-right: 10px;
+            background: white;
+            display: flex;
+            align-items: center;
+            color: var(--var-secbgc);
+            font-size: 25px;
+        }
+        /****/
+        #postsCont{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 0;
+        }
+        .postElement{
+            width: 80%;
+            max-width: 900px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .postHeader{
+            display: flex;
+            justify-content: space-between;
+            font-size: 26px;
+            font-family: 'Outfit';
+        }
+        .postAuthor{
+            color: var(--var-secbgc);
+            border-bottom: 1px solid var(--var-secbgc);
+            border-right: 1px solid var(--var-secbgc);
+            border-top: 1px solid var(--var-secbgc);
+            padding-right: 11px;
+            display: flex;
+            align-items: center;
+        }
+        .postDate{
+            color: var(--var-secbgc);
+            font-size: 20px;
+            display: flex;
+            align-items: end;
+            border-left: 1px solid var(--var-secbgc);
+            border-top: 1px solid var(--var-secbgc);
+            border-right: 1px solid var(--var-secbgc);
+            padding: 11px;
+        }
+        .postTitle{
+            font-size: 33px;
+            border-left: 1px solid var(--var-secbgc);
+            padding: 11px;
+            font-family: 'Spectral';
+        }
+        .postContent{
+            font-size: 22px;
+            border-left: 1px solid var(--var-secbgc);
+            border-top: 1px solid var(--var-secbgc);
+            border-right: 1px solid var(--var-secbgc);
+            font-family: 'Outfit';
+            padding: 11px;
+        }
+        .postComents{
+            width: fit-content;
+            align-self: end;
+            display: flex;
+            column-gap: 10px;
+            font-size: 24px;
+            background: var(--var-secbgc);
+            padding: 5px;
+            color: rgb(255, 255, 255);
+            font-family: 'Spectral';
+            
+        }
+        .postsSeparator{
+            display: block;
+            width: 80%;
+            height: 4px;
+            border-top: 4px dotted var(--var-secbgc);
+            max-width: 900px;
+            margin: 40px 0;
+        }
+        /****/
+        #PostCont{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 0;
+            min-height: 100vh;
+            background: var(--var-mainbgc);
+        }
+        #PostElement{
+            width: 80%;
+            max-width: 1000px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .PostAuthor{
+            color: var(--var-secbgc);
+            display: flex;
+            align-items: center;
+            font-size: 33px;
+            font-family: 'Spectral';
+            border-bottom: 5px solid var(--var-secbgc);
+            width: fit-content;
+        }
+        .PostDate{
+            color: var(--var-secbgc);
+            width: fit-content;
+            font-size: 22px;
+            display: flex;
+            align-items: end;
+            font-family: 'Oswald';
+        }
+        .PostTitle{
+            font-size: 39px;
+            font-family: 'Outfit';
+            background: var(--var-secbgc);
+            color: var(--var-mainbgc);
+            text-align: center;
+        }
+        .PostContent{
+            font-size: 30px;
+            font-family: 'Outfit';
+            color: rgb(121, 101, 86);
+            border-left: 25px solid var(--var-secbgc);
+            border-right: 25px solid var(--var-secbgc);
+            padding: 0 10px;
+        }
+        #commentForm{
+            display: flex;
+            justify-content: center;
+            width: 80%;
+            max-width: 1000px;
+            align-items: end;
+            margin: 20px auto;
+            position: sticky;
+            top: 80%;
+        }
+        #commentField{
+            resize: none;
+            width: 82%;
+            height: 55px;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid var(--var-secbgc);
+            font-size: 22px;
+            background: transparent;
+        }
+        #commentButton{
+            width: 18%;
+            height: 55px;
+            cursor: pointer;
+            border: none;
+            background: var(--var-secbgc);
+            color: var(--var-mainbgc);
+            font-size: 30px;
+            font-family: 'Spectral';
+        }
+        #PostElement > div{
+            margin: 5px 0;
+        }
+        #commentsSection{
+            width: 80%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            margin-top: 50px;
+            row-gap: 20px;
+        }
+        .comment{
+            min-width: 350px;
+            width: fit-content;
+            height: fit-content;
+            display: grid;
+            grid-template-columns: repeat(2,48%);
+            grid-template-rows: repeat(2,auto);
+            font-size: 22px;
+            background-color: var(--var-secbgc);
+            color: var(--var-mainbgc);
+            padding: 10px;
+            column-gap: 4%;
+            row-gap: 4px;
+
+        }
+        .cauthor{
+            grid-column: 1/2;
+            grid-row: 1/2;
+            width: max-content;
+        }
+        .cdate{
+            grid-column: 2/3;
+            grid-row: 1/2;
+            justify-self: end;
+            width: max-content;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .ccontent{
+            grid-column: 1/3;
+            grid-row: 2/3;
+            
+        }
+        #cbutton{
+            display: block;
+            grid-column: 1/3;
+            grid-row: 3/4;
+            width: fit-content;
+            height: fit-content;
+            justify-self: end;
+            padding: 4px 6px;
+            cursor: pointer;
+            font-size: 18px;
+            border: none;
+            background: var(--var-mainbgc);
+            color: var(--var-secbgc);
+        }
+    </style>
+</head>
+<body>
+    <nav id="navContainer">
+        <ul class="navbarElement">
+            <li class="menu"> <span id="mainPageButton">INICIO</span>
+                <li class="pipe"> | </li>
+            <li class="menu"> <span>NOTICIAS</span>
+                <ul class="subMenu">
+                    <li><span id="allNewsPage">VER TODAS</span></li>
+                    <li><span id="hardware">HARDWARE Y COMPONENTES</span></li>
+                    <li><span id="games">JUEGOS Y ENTRETENIMIENTO</span></li>
+                    <li><span id="films">SERIES  Y PELICULAS</span></li>
+                </ul>
+            </li>
+            <li class="pipe"> | </li>
+            <li class="menu"><span id="postsPage">FORO</span></li>
+        </ul>
+        <ul class="navbarElement Icon">
+            <li class="menu icon" id="icon"><span class="mainIcon"></span></li>
+        </ul>
+        <ul class="navbarElement User" id="identification"></ul>
+    </nav>
+    <section id="mainContainer"></section>
+    <footer id="footer">
+        <ul id="footerMenuCont">
+            <li class="fmenu">SOBRE NOSOTROS</li>
+            <li class="pipe">|</li>     
+            <li class="fmenu">POLITICAS DE PRIVACIDAD & COOKIES</li>
+            <li class="pipe">|</li>  
+            <li class="fmenu">CONTACTE CON NOSOTROS</li>
+        </ul>
+    </footer>
+</body>
+<script>
+    'use strict';
+
+    let mainContainer = document.querySelector('#mainContainer'),
+    mainPageButton = document.querySelector('#mainPageButton'),
+    allNewsPage = document.querySelector('#allNewsPage'),
+    hardware = document.querySelector('#hardware'),
+    games = document.querySelector('#games'),
+    films = document.querySelector('#films'),
+    postsPage = document.querySelector('#postsPage'),
+    icon = document.querySelector('#icon'),
+    identification = document.querySelector('#identification'),
+    menuusername,profile,logOf,loginButton,signinButton,signInButton,signinForm,
+    sendCredentials,loginForm, // De la pagina de login
+    // MainPageCont vars
+    chardware,cgames,cfilms,leftArrow,rightArrow,carete,carruselLength,
+    running=false,autoCarrusel,tcardButton,
+    postElement,commentForm,// Posts Page
+    postId; 
+    
+    verifySession();
+    setPage();
+
+    allNewsPage.addEventListener('click',()=> getNewsPage('default'));
+    games.addEventListener('click',()=> getNewsPage('games'));
+    hardware.addEventListener('click',()=> getNewsPage('hardware'));
+    films.addEventListener('click',()=> getNewsPage('films'));
+    icon.addEventListener('click',getMainPage);
+    mainPageButton.addEventListener('click',getMainPage);
+    postsPage.addEventListener('click',getPostsPage);
+
+    function verifySession(){
+        fetch('./verify/verifySession.php')
+        .then(res => res.json())
+        .then(data => {
+                if (data){
+                        identification.innerHTML =`<li class='menu user'><span id='menuusername'>`+data+`</span>
+                                                        <ul class='profile-logof no-visible' id='profileLogof'>
+                                                            <li id='profile'><span>PERFIL</span></li>
+                                                            <li id='logOf'><span>CERRAR SESION</span></li>
+                                                        </ul>
+                                                    </li>`;
+                        menuusername = document.querySelector('#menuusername');
+                        menuusername.addEventListener('click',()=>{
+                            let plof = document.querySelector('#profileLogof');
+                            if(plof.classList.contains('no-visible')){
+                                plof.classList.remove('no-visible');
+                                plof.classList.add('visible');
+                            }else{
+                                plof.classList.remove('visible');
+                                plof.classList.add('no-visible');
+                            }
+                        });
+
+                        profile = document.querySelector('#profile');
+                        profile.addEventListener('click',()=>{
+                            alert('Page not implemented yet');
+                        });
+
+                        logOf = document.querySelector('#logOf');
+                        logOf.addEventListener('click',()=>{
+                            fetch('./controllers/logOutController.php');
+                            verifySession();
+                            setPage();
+                        });
+                }else {
+                    identification.innerHTML =`<li class="menu user"><span id='loginButton'>INICIAR SESION</span></li>
+                                                <li class="pipe"> | </li>
+                                                <li class="menu user"><span id='signinButton'>REGISTRARSE</span></li>`;
+                    signinButton = document.querySelector('#signinButton'),
+                    loginButton = document.querySelector('#loginButton');
+
+                    loginButton.addEventListener('click',getLoginPage);
+                    signinButton.addEventListener('click',getSigninPage);
+                }
+            });
+    }
+
+    function setPage(loc=localStorage.getItem('loc')){
+        switch(loc){
+            case 'topic - default':
+                getNewsPage('default');
+            break;
+            case 'topic - games':
+                getNewsPage('games');
+            break;
+            case 'topic - hardware':
+                getNewsPage('hardware');
+            break;
+            case 'topic - films':
+                getNewsPage('films');
+            break;
+            case 'login':
+                getLoginPage();
+            break;
+            case 'signin':
+                getSigninPage();
+            break;
+            case 'posts':
+                getPostsPage();
+            break;
+            case 'post':
+                setPostPage();
+            break;
+            default:
+                getMainPage();
+        }
+    }
+
+    function getMainPage(){
+        localStorage.setItem('loc','main');
+        fetch('./controllers/mainPageController.php')
+        .then(res => res.json())
+        .then(data => {
+          mainContainer.innerHTML = data;
+
+            // cargamos la info asociada a la pagina //
+            leftArrow = document.querySelector('#leftArrow'),
+            rightArrow = document.querySelector('#rightArrow'),
+            carete = document.querySelector('#carete'),
+            carruselLength = document.querySelectorAll('.carruselElement').length,
+            chardware = document.querySelector('#chardware'),
+            cgames = document.querySelector('#cgames'),
+            cfilms = document.querySelector('#cfilms'),
+            running=false;
+
+            leftArrow.addEventListener('click',()=>{
+                runCarrusel(300,'0%','afterbegin',carruselLength -1);
+            });
+            rightArrow.addEventListener('click',()=>{
+                runCarrusel(300,'-200%','beforeend',carruselLength - carruselLength);
+            });
+            cgames.addEventListener('click',()=> getNewsPage('games'));
+            chardware.addEventListener('click',()=> getNewsPage('hardware'));
+            cfilms.addEventListener('click',()=> getNewsPage('films'));
+
+            scrollTo();
+
+        });
+    }
+
+    function getNewsPage(category){
+        localStorage.setItem('loc','topic - '+category);
+        fetch('./controllers/newsPageController.php?category='+category)
+        .then(res => res.json())
+        .then(data => {
+            mainContainer.innerHTML = data;
+
+            tcardButton = document.querySelectorAll('.tcardButton');
+
+            tcardButton.forEach(element =>{
+                element.addEventListener('click',e=> alert('element clicked'))
+            });
+
+
+            scrollTo();
+        });
+    }
+
+    function getLoginPage(){
+        fetch('./controllers/loginController.php')
+        .then(res => res.json())
+        .then(data => {
+            mainContainer.innerHTML = data;
+            scrollTo();
+            updateLoginValues();
+        });
+    }
+
+    function getSigninPage(){
+        fetch('./controllers/signinController.php')
+        .then(res => res.json())
+        .then(data => {
+            mainContainer.innerHTML = data;
+            scrollTo();
+            updateSigninValues();
+        });
+    }
+
+    function updateLoginValues (){
+            sendCredentials = document.querySelector('#sendCredentials'),
+            loginForm = document.querySelector('#loginForm');
+            sendCredentials.addEventListener('click',(e)=>{
+                e.preventDefault();
+                fetch('./controllers/loginController.php',{
+                    method: 'POST',
+                    body: new FormData(loginForm)
+                })
+                .then(res => res.json())
+                .then(data =>{
+                    if(!data){
+                        setPage();
+                        verifySession();
+                    }else{
+                        mainContainer.innerHTML = data;
+                        updateLoginValues();
+                    }
+                });
+            });
+    }
+
+    function updateSigninValues (){
+            signInButton = document.querySelector('#signInButton'),
+            signinForm = document.querySelector('#signinForm');
+            signInButton.addEventListener('click',(e)=>{
+                e.preventDefault();
+                fetch('./controllers/loginController.php',{
+                    method: 'POST',
+                    body: new FormData(signinForm)
+                })
+                .then(res => res.json())
+                .then(data =>{
+                    if(!data){
+                        //getMainPage();
+                        //verifySession();
+                    }else{
+                        mainContainer.innerHTML = data;
+                        updateSigninValues();
+                    }
+                });
+            });
+    }
+
+    function getPostsPage(){
+        localStorage.setItem('loc','posts');
+        fetch('./controllers/postsPageController.php')
+        .then(res => res.json())
+        .then(data => {
+            mainContainer.innerHTML = data;
+
+            postElement = document.querySelectorAll('.postElement');
+
+            postElement.forEach(element =>{
+                element.addEventListener('click',getPostPage);
+            });
+
+            scrollTo();
+        });
+    }
+
+    function getPostPage(e){
+        postId = (e.target.parentElement.parentElement.getAttribute('postId') != null)
+        ?e.target.parentElement.parentElement.getAttribute('postId')
+        :((e.target.parentElement.getAttribute('postId') != null)
+        ?e.target.parentElement.getAttribute('postId')
+        :e.target.getAttribute('postId'));
+
+        localStorage.setItem('loc', 'post');
+        localStorage.setItem('postid', postId);
+
+        fetch('./controllers/postPageController.php?postid='+postId)
+        .then(res => res.json())
+        .then(data => {
+            mainContainer.innerHTML = data;
+            commentForm = document.querySelector('#commentForm');
+            commentForm.addEventListener('submit',e =>{
+                e.preventDefault();
+                newComment();
+            });
+            getPostComments();
+            scrollTo();
+        });
+    }
+
+    function setPostPage(){
+        let id = localStorage.getItem('postid');
+            fetch('./controllers/postPageController.php?postid='+id)
+            .then(res => res.json())
+            .then(data => {
+                mainContainer.innerHTML = data;
+                commentForm = document.querySelector('#commentForm');
+                commentForm.addEventListener('submit',e =>{
+                e.preventDefault();
+                newComment();
+                });
+                getPostComments();
+            });
+    }
+
+    function runCarrusel (msecs,marginpercent,epos,index){
+        if(!running){
+            running = true;
+            carete.style.transition = msecs+'ms';
+            carete.style.marginLeft = marginpercent;
+            let carruselElement = document.querySelectorAll('.carruselElement');
+            setTimeout(()=>{
+                carete.style.transition = '0s';
+                carete.insertAdjacentElement(epos,carruselElement[index]);
+                carete.style.marginLeft = '-100%';
+                running = false;
+            },msecs);
+        }
+    }
+
+    function scrollTo (top=0,behavior='smooth'){
+        document.documentElement.scrollTo({top,behavior})
+    }
+
+    function getPostComments(){
+        
+        fetch('./controllers/postCommentsController.php')
+        .then(res => res.json())
+        .then(data => {
+            let commentsSection = document.querySelector('#commentsSection');
+            commentsSection.innerHTML = data;
+        });
+    }
+
+    function newComment(){
+        fetch('./controllers/newCommentController.php',{
+            method: 'POST',
+            body: new FormData(commentForm)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data) alert(data);
+            else {
+                getPostComments();
+                commentForm.reset();
+            }
+        });
+    }
+
+</script>
+</html>
