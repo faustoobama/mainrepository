@@ -2,8 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['username'])){
-        setcookie('url',$_SERVER['REQUEST_URI']);
-        header('Location:../index.html');
+        header('Location:../index.php?url='.$_SERVER['REQUEST_URI']);
     }else {
 ?>
     <!DOCTYPE html>
@@ -172,7 +171,6 @@
     </body>
     <script>
         'use strict';
-        window.stop();
 
         let cerrarSesion = document.querySelector('#logof');
         cerrarSesion.addEventListener('click',logOf);
@@ -188,7 +186,7 @@
             .then(response => response.json())
             .then(res => {
                 if (res.status == 403) {
-                    location.href = '../index.html';
+                    location.href = '../index.php';
                 }else if (res.status == 404){
                     console.log(res.message);
                 }else if (res.status == 200) {
@@ -213,7 +211,7 @@
             .then(response => response.json())
             .then(res => {
                 if (res.status == 403) {
-                    location.href = '../index.html';
+                    location.href = '../index.php';
                 }else if (res.status == 404){
                     console.log(res.message);
                 }else if (res.status == 200){
@@ -242,18 +240,7 @@
 
         function logOf(){
             fetch('../back/logof.php')
-            .then(res => location.href = '../index.html');
-        }
-        function getCookie(name){
-            let cookies = document.cookie.split(';'),
-            value='';
-
-            cookies.forEach(cookie => {
-                if(cookie.includes(name)){
-                    value = cookie.substring(name.length,cookie.lenght);
-                }
-            return value;
-            });
+            .then(res => location.href = '../index.php');
         }
 
     </script>

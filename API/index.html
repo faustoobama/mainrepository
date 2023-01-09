@@ -168,6 +168,7 @@
         gotoRegistration = document.querySelector('#gotoRegistration'),
         gotoLogin = document.querySelector('#gotoLogin'),
         formData;
+    let $url = '/front/inicio.php?attr=directly';
 
         loginButton.addEventListener('click',(e)=>{
             formData = new FormData(logIn);
@@ -184,7 +185,7 @@
             .then(res => res.json())
             .then(data => {
                 if(data.status == 200 || data.message == 'Logged'){
-                    location.href = './front/inicio.php';
+                    location.href = $url;
                     logIn.reset();
                 }else{
                     let element = `
@@ -216,7 +217,7 @@
             .then(res => res.json())
             .then(data => {
                 if(data.status == 200 || data.message == 'Added'){
-                    location.href = './index.html';
+                    location.href = './index.php';
                     logIn.reset();
                 }else{
                     let element = `
