@@ -894,7 +894,7 @@
     }
 
     function getLoginPage(){
-        fetch('./controllers/loginController.php')
+        fetch('./controllers/LoginController.php')
         .then(res => res.json())
         .then(data => {
             mainContainer.innerHTML = data;
@@ -918,7 +918,7 @@
             loginForm = document.querySelector('#loginForm');
             sendCredentials.addEventListener('click',(e)=>{
                 e.preventDefault();
-                fetch('./controllers/loginController.php',{
+                fetch('./controllers/LoginController.php',{
                     method: 'POST',
                     body: new FormData(loginForm)
                 })
@@ -940,7 +940,7 @@
             signinForm = document.querySelector('#signinForm');
             signInButton.addEventListener('click',(e)=>{
                 e.preventDefault();
-                fetch('./controllers/loginController.php',{
+                fetch('./controllers/LoginController.php',{
                     method: 'POST',
                     body: new FormData(signinForm)
                 })

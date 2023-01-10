@@ -4,8 +4,8 @@
     const PORT = 3306;
     const DB = 'entertainment';
     const HOST = "mysql:host=localhost:".self::PORT.";dbname=".self::DB;
-    const USER = 'root';
-    const PASS = '';
+    const USER = 'admin';
+    const PASS = 'admin';
     const FIRSTELEMENT = 0;
         function __construct(){
             try{
