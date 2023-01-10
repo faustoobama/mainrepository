@@ -940,15 +940,14 @@
             signinForm = document.querySelector('#signinForm');
             signInButton.addEventListener('click',(e)=>{
                 e.preventDefault();
-                fetch('./controllers/LoginController.php',{
+                fetch('./controllers/signinController.php',{
                     method: 'POST',
                     body: new FormData(signinForm)
                 })
                 .then(res => res.json())
                 .then(data =>{
                     if(!data){
-                        //getMainPage();
-                        //verifySession();
+                        alert('Recibira una clave de acceso a su direccion de correo electronico con la cual podra activar su usuario');
                     }else{
                         mainContainer.innerHTML = data;
                         updateSigninValues();

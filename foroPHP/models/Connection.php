@@ -57,13 +57,19 @@
                 echo json_encode($e->getMessage());
             }
         }
-        function signin($user,$pass){
-            if($user == 'lucer@cito.wen'){
-                session_start();
-                $_SESSION['username'] = strtoupper('Lucer Cito Wenright');
-            return true;
-            } else
-                return false;
+        function signin($name,$email){
+            $pass = random_int(1000,99999);
+            try {
+                    $prepQ = $this->dbConnection->prepare('INSERT INTO users (name,email,password) VALUES (:name, :email, :pass)');
+                    $prepQ->bindParam(':name', $name);
+                    $prepQ->bindParam(':email', $email);
+                    $prepQ->bindParam(':pass', $pass);
+                    $prepQ->execute();
+                    mail($email,'Codigo de acceso aleatorio','Este es su codigo de acceso aleatorio: '.$pass,'From: no-reply@wenrwright.com' . "\r\n" .'Reply-To: lucercitosforum@wenrwright.com' . "\r\n" .'X-Mailer: PHP/' . phpversion());
+                    return false;
+                } catch (PDOException $e) {
+                    die(json_encode($e->getMessage()));
+                }
         }
         function getPosts(){
             try {
@@ -108,6 +114,17 @@
                 $prepQ->bindParam(':content', $content);
                 $prepQ->execute();
                 return false;
+            } catch (PDOException $e) {
+                die(json_encode($e->getMessage()));
+            }
+        }
+        function activateUser($rac,$pass){
+            try {
+                $prepQ = $this->dbConnection->prepare("UPDATE users SET password = :pass, status = 'active' WHERE password = :rac AND status = 'new'");
+                $prepQ->bindParam(':pass', $pass);
+                $prepQ->bindParam(':rac', $rac);
+                $result = $prepQ->execute();
+                return $result;
             } catch (PDOException $e) {
                 die(json_encode($e->getMessage()));
             }
