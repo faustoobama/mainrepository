@@ -120,11 +120,17 @@
         }
         function activateUser($rac,$pass){
             try {
-                $prepQ = $this->dbConnection->prepare("UPDATE users SET password = :pass, status = 'active' WHERE password = :rac AND status = 'new'");
-                $prepQ->bindParam(':pass', $pass);
+                $prepQ = $this->dbConnection->prepare("SELECT * FROM users WHERE password = :rac AND status = 'new'");
                 $prepQ->bindParam(':rac', $rac);
-                $result = $prepQ->execute();
+                $validRac = $prepQ->execute();
+                if($validRac){
+                    $prepQ = $this->dbConnection->prepare("UPDATE users SET password = :pass, status = 'active' WHERE password = :rac AND status = 'new'");
+                    $prepQ->bindParam(':pass', $pass);
+                    $prepQ->bindParam(':rac', $rac);
+                    $result = $prepQ->execute();
                 return $result;
+                } else return false;
+                
             } catch (PDOException $e) {
                 die(json_encode($e->getMessage()));
             }
