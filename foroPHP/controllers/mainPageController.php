@@ -24,13 +24,22 @@ spl_autoload_register(function ($class) {
     }
     require_once($fullpath);
 });
+spl_autoload_register(function ($class) {
+    $path = '../Traits/';
+    $fullpath = $path . $class . '.php';
+    while(!file_exists($fullpath)){
+        return false;
+    }
+    require_once($fullpath);
+});
 
 $db = new Connection();
 
-// $data = $db->getMainPage();
+$view = new MainPageView();
 
-$view = new MainPageView(/*$data*/);
-
+$view->printHeader();
 echo $view->getPage();
+$view->printFooter();
 
 ?>
+

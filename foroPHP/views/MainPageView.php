@@ -1,7 +1,7 @@
 <?php
 class MainPageView extends APage {
+    use Layout;
     function getPage(){
-        $data = $this->getData();
         $page = <<<EOF
                     <div id="mainPageImage" class="elements"></div>
                     <div id="mainPageIntro" class="elements">
@@ -59,7 +59,7 @@ class MainPageView extends APage {
                         </div>
                     </div>
                     EOF;
-        return json_encode($page);
+        return $page;
     }
 }
 

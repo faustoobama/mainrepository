@@ -1,5 +1,6 @@
 <?php
 class loginFormClass {
+    use Layout;
     private $email;
     private $password;
     function __construct(array $array){
@@ -22,7 +23,7 @@ class loginFormClass {
     }
     function getLoginPage($var=''){
         if($var == 'disabled') {
-                return json_encode(<<<EOF
+                return (<<<EOF
                         <div class='elements' id='loginCont'>
                         <div class='loginSigninMainTitle'>INICIO DE SESION</div>
                         <form method='post' id='loginForm'>
@@ -40,7 +41,7 @@ class loginFormClass {
                         </div>
                     EOF);
         }else if($var == 'unauthorized') {
-                return json_encode(<<<EOF
+                return (<<<EOF
                         <div class='elements' id='loginCont'>
                         <div class='loginSigninMainTitle'>INICIO DE SESION</div>
                         <form method='post' id='loginForm'>
@@ -56,7 +57,7 @@ class loginFormClass {
                         </div>
                     EOF);
         }else if($var == 'inactive') {
-            return json_encode(<<<EOF
+            return (<<<EOF
                     <div class='elements' id='loginCont'>
                     <div class='loginSigninMainTitle'>INICIO DE SESION</div>
                     <form method='post' id='loginForm'>
@@ -72,7 +73,7 @@ class loginFormClass {
                     </div>
                 EOF);
         }else {
-                return json_encode(<<<EOF
+                return (<<<EOF
                             <div class='elements' id='loginCont'>
                             <div class='loginSigninMainTitle'>INICIO DE SESION</div>
                             <form method='post' id='loginForm'>

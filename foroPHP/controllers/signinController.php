@@ -1,23 +1,43 @@
 <?php
-require('../Fclass/signinFormClass.php');
-require('../Fclass/inputText.php');
-require('../Fclass/inputEmail.php');
-require('../Fclass/inputPassword.php');
+spl_autoload_register(function ($class) {
+    $path = '../Fclass/';
+    $fullpath = $path . $class . '.php';
+    while(!file_exists($fullpath)){
+        return false;
+    }
+    require_once($fullpath);
+});
 
-require('../models/Connection.php');
+spl_autoload_register(function ($class) {
+    $path = '../models/';
+    $fullpath = $path . $class . '.php';
+    while(!file_exists($fullpath)){
+        return false;
+    }
+    require_once($fullpath);
+});
+
+spl_autoload_register(function ($class) {
+    $path = '../Traits/';
+    $fullpath = $path . $class . '.php';
+    while(!file_exists($fullpath)){
+        return false;
+    }
+    require_once($fullpath);
+});
 
     $form = new signinFormClass($_POST);
     $db = new Connection();
-
-    if($form->isValid()){
-        $name = $form->getName()->getValue();
-        $email = $form->getEmail()->getValue();
-        $result = $db->signin($name, $email);
-
-        if(!$result){
-            echo json_encode($result);
-        }else echo $form->getSigninPage(false);
-        
-    } else echo $form->getSigninPage();
-
-?>
+    $form->printHeader();
+        if($form->isValid()){
+            $name = $form->getName()->getValue();
+            $email = $form->getEmail()->getValue();
+            $result = $db->signin($name, $email);
+    
+            if(!$result){
+                echo json_encode($result);
+            }else echo $form->getSigninPage();
+            
+        } else echo $form->getSigninPage();
+    $form->printFooter();
+    ?>

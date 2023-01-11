@@ -60,13 +60,21 @@
         function signin($name,$email){
             $pass = random_int(1000,99999);
             try {
-                    $prepQ = $this->dbConnection->prepare('INSERT INTO users (name,email,password) VALUES (:name, :email, :pass)');
-                    $prepQ->bindParam(':name', $name);
-                    $prepQ->bindParam(':email', $email);
-                    $prepQ->bindParam(':pass', $pass);
-                    $prepQ->execute();
-                    mail($email,'Codigo de acceso aleatorio','Este es su codigo de acceso aleatorio: '.$pass,'From: no-reply@wenrwright.com' . "\r\n" .'Reply-To: lucercitosforum@wenrwright.com' . "\r\n" .'X-Mailer: PHP/' . phpversion());
-                    return false;
+                $prepQ = $this->dbConnection->prepare('SELECT * FROM users WHERE email = :email');
+                $prepQ->bindParam(':email', $email);
+                $prepQ->execute();
+                $otherUser = $prepQ->fetchAll(PDO::FETCH_ASSOC);
+                    if($otherUser){
+                        return false;
+                    }else{
+                        $prepQ = $this->dbConnection->prepare('INSERT INTO users (name,email,password) VALUES (:name, :email, :pass)');
+                        $prepQ->bindParam(':name', $name);
+                        $prepQ->bindParam(':email', $email);
+                        $prepQ->bindParam(':pass', $pass);
+                        $prepQ->execute();
+                        mail($email,'Codigo de acceso aleatorio','Este es su codigo de acceso aleatorio: '.$pass,'From: no-reply@wenrwright.com' . "\r\n" .'Reply-To: lucercitosforum@wenrwright.com' . "\r\n" .'X-Mailer: PHP/' . phpversion());
+                        return false;
+                    }
                 } catch (PDOException $e) {
                     die(json_encode($e->getMessage()));
                 }

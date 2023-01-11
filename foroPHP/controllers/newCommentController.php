@@ -26,7 +26,6 @@
 
         $userid = $_SESSION['userid'];
         $postid = $_COOKIE['postid'];
-        $comment = '';
         if($data->isValid()){
             $comment = $data->getData()->getValue();
             $res = $db->newComment($userid,$postid,$comment);

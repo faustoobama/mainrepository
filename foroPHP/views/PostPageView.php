@@ -1,5 +1,6 @@
 <?php
 class PostPageView extends APage {
+    use Layout;
     function getPage(){
         $data = $this->getData();
             $page = <<<EOF
@@ -19,7 +20,7 @@ class PostPageView extends APage {
                         </form>
                     </div>
                     EOF;
-        return json_encode($page);
+        return $page;
     }
 }
 

@@ -1,5 +1,6 @@
 <?php
 class signinFormClass {
+    use Layout;
     private $name;
     private $email;
 
@@ -7,13 +8,9 @@ class signinFormClass {
         if(!empty($array)){
             $this->name = new inputText($array['newname']);
             $this->email = new inputEmail($array['newemail']);
-            $this->password = new inputPassword($array['newpassword']);
-            $this->cpassword = new inputPassword($array['newcpassword']);
         }else {
             $this->name = new inputText();
             $this->email = new inputEmail();
-            $this->password = new inputPassword();
-            $this->cpassword = new inputPassword();
         }
     }
     function getName (){
@@ -28,7 +25,7 @@ class signinFormClass {
     }
     function getSigninPage(){
         if(empty($_POST)){
-            return json_encode(<<<EOF
+            return (<<<EOF
                         <div class='elements' id='signinCont'>
                         <div class='loginSigninMainTitle'>REGISTRO DE USUARIO</div>
                         <form method='post' id='signinForm'>
@@ -43,7 +40,7 @@ class signinFormClass {
                         </div>
                     EOF);
         }else {
-            return json_encode(<<<EOF
+            return (<<<EOF
                         <div class='elements' id='signinCont'>
                         <div class='loginSigninMainTitle'>REGISTRO DE USUARIO</div>
                         <form method='post' id='signinForm'><p class='notAut'>Valores incorrectos<p>

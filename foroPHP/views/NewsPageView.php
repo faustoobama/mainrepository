@@ -1,5 +1,6 @@
 <?php
 class NewsPageView extends APage {
+    use Layout;
     const CATEGORIES=[
         'hardware'=> ['title'=>'hardware','description'=>'La descripcion de la Zona Hardware'],
         'games'=> ['title'=>'juegos y entretenimiento','description'=>'La descripcion de la Zona de Juegos'],
@@ -18,7 +19,7 @@ class NewsPageView extends APage {
             foreach ($data as $value) {
                 $page .= <<<EOF
                             <div class='tcard' postId='$value[id]'>
-                                <img src='./img/$value[image].webp' class='tcardImg'>
+                                <img src='/img/$value[image].webp' class='tcardImg'>
                                 <div class='tcardTitle'>$value[title]</div>
                                 <div class='tcardResum'>$value[resume]</div>
                                 <div class='tcardFooter'>
@@ -29,8 +30,8 @@ class NewsPageView extends APage {
                         EOF;
             }
             $page .= "</div>";
-            return json_encode($page);
-        } else return json_encode(false);
+            return $page;
+        } else return '404';
     }
     function isValidCategory(){
         return in_array($this->category, ['hardware','games','films','default']);

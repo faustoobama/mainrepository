@@ -1,5 +1,6 @@
 <?php
 class PostsPageView extends APage {
+    use Layout;
     function getPage(){
         $data = $this->getData();
         $page = "<div class='elements' id='postsCont'>";
@@ -21,7 +22,7 @@ class PostsPageView extends APage {
             $page .= ($key < count($data) -1)?"<span class='postsSeparator'></span>":"";
         }
         $page .= "</div>";
-        return json_encode($page);
+        return $page;
     }
 }
 
