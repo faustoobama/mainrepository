@@ -71,9 +71,9 @@
                         $prepQ->bindParam(':name', $name);
                         $prepQ->bindParam(':email', $email);
                         $prepQ->bindParam(':pass', $pass);
-                        $prepQ->execute();
-                        mail($email,'Codigo de acceso aleatorio','Este es su codigo de acceso aleatorio: '.$pass,'From: no-reply@wenrwright.com' . "\r\n" .'Reply-To: lucercitosforum@wenrwright.com' . "\r\n" .'X-Mailer: PHP/' . phpversion());
-                        return false;
+                        $result = $prepQ->execute();
+                        //mail($email,'Codigo de acceso aleatorio','Este es su codigo de acceso aleatorio: '.$pass,'From: no-reply@wenrwright.com' . "\r\n" .'Reply-To: lucercitosforum@wenrwright.com' . "\r\n" .'X-Mailer: PHP/' . phpversion());
+                        return $result;
                     }
                 } catch (PDOException $e) {
                     die(json_encode($e->getMessage()));

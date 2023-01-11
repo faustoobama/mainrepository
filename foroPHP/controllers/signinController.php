@@ -34,9 +34,9 @@ spl_autoload_register(function ($class) {
             $email = $form->getEmail()->getValue();
             $result = $db->signin($name, $email);
     
-            if(!$result){
-                echo json_encode($result);
-            }else echo $form->getSigninPage();
+            if($result){
+                echo $form->getSuccesfullSign();
+            }else echo $form->getSigninPage(false);
             
         } else echo $form->getSigninPage();
     $form->printFooter();

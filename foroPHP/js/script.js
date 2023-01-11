@@ -2,7 +2,7 @@
 
 window.addEventListener('load',()=>{
 
-    let menuusername,profile,logOf,carete,
+    let menuusername,profile,logOf,
     running=false,
     postElement,commentForm,// Posts Page
     postId; // Valido
@@ -50,8 +50,8 @@ window.addEventListener('load',()=>{
     if(document.querySelector('#commentForm')){
         commentForm = document.querySelector('#commentForm');
         commentForm.addEventListener('submit',e =>{
-        e.preventDefault();
-        newComment();
+            e.preventDefault();
+            newComment();
         });
         getPostComments();
     }
@@ -85,16 +85,31 @@ window.addEventListener('load',()=>{
     function scrollTo (top=0,behavior='smooth'){
         document.documentElement.scrollTo({top,behavior})
     }
+    if(document.querySelector('#carete')){
+        let leftArrow = document.querySelector('#leftArrow'),
+            rightArrow = document.querySelector('#rightArrow'),
+            carruselElement = document.querySelectorAll('.carruselElement'),
+            carruselElementLength = carruselElement.length;
+            carruselElement.forEach(element =>{
+                element.addEventListener('click',(e)=>{
+                    document.location.href='/controllers/newsPageController.php?category='+(e.target.id.replace('c',''));
+                });
+            });
+        leftArrow.addEventListener('click',()=>runCarrusel(333,'0%','afterbegin',carruselElementLength -1));
+        rightArrow.addEventListener('click',()=>runCarrusel(500,'-200%','beforeend',0));  
+    }
 
-    function runCarrusel (msecs,marginpercent,epos,index){
+    function runCarrusel (msecs,marginpercent,ePos,eIndex){
         if(!running){
             running = true;
+            let carruselE = document.querySelectorAll('.carruselElement'),
+                carete = document.querySelector('#carete');
+
             carete.style.transition = msecs+'ms';
             carete.style.marginLeft = marginpercent;
-            let carruselElement = document.querySelectorAll('.carruselElement');
             setTimeout(()=>{
                 carete.style.transition = '0s';
-                carete.insertAdjacentElement(epos,carruselElement[index]);
+                carete.insertAdjacentElement(ePos,carruselE[eIndex]);
                 carete.style.marginLeft = '-100%';
                 running = false;
             },msecs);
