@@ -36,10 +36,10 @@
     ];
     $form->printHeader();
     if($form->isValid()){
-        $user = $form->getEmail()->getValue();
-        $pass = password_hash($form->getPassword()->getValue(), PASSWORD_DEFAULT);
+        $email = $form->getEmail()->getValue();
+        $pass = $form->getPassword()->getValue();
 
-        $result = $con->login($user, $pass);
+        $result = $con->login($email, $pass);
 
         switch ($result['status']) {
             case STATUS['ack']:

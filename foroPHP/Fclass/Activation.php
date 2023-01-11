@@ -37,11 +37,12 @@ class Activation {
                     <meta http-equiv="X-UA-Compatible" content="IE=edge">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>Activacion de usuario</title>
+                    <link rel='stylesheet' href='/css/activationstyles.css'>
                 </head>
                 <body>
                 <div class='elements' id='userActivation'>
-                <div class='userActivationMainTitle'>Activacion de usuario</div>
-                <form method='post' id='activationForm' action=''>
+                <h1 class='userActivationMainTitle'>Activacion de usuario</h1>
+                <form method='post' id='userActivationForm' action=''>
             EOF.
                 $this->randomAccesCode->printInput('rac','text','Clave de activación').
                 ((!empty($_POST))?(($this->password->isValid())?"<b class='validInput'>Valor valido</b>":" <b class='invalidInput'>Valor incorrecto</b>"):"").

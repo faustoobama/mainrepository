@@ -12,10 +12,11 @@ if($form->isValid()){
     $rac = $form->getRandomAccesCode()->getValue();
     $pass = $form->getPassword()->getValue();
 
-    $db->activateUser($rac,$pass);
+    $result = $db->activateUser($rac,$pass);
 
-    header('Location: ../index.html');
-
+    if($result){
+        echo 'Usuario activado. Puede proceder a iniciar sesión';
+    }else die('Clave de acceso incorrecta');
 }else echo $form->getActivationForm();
 
 ?>

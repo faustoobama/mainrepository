@@ -38,18 +38,20 @@
         function login($email,$pass){
 
             try {
-                $prepQ = $this->dbConnection->prepare('SELECT * FROM users WHERE email = :email AND password = :pass');
+                $prepQ = $this->dbConnection->prepare('SELECT * FROM users WHERE email = :email LIMIT 1');
                 $prepQ->bindParam(':email', $email);
-                $prepQ->bindParam(':pass', $pass);
                 $prepQ->execute();
-                $result = $prepQ->fetchAll(PDO::FETCH_ASSOC);
+                $data = $prepQ->fetchAll(PDO::FETCH_ASSOC);
+                $result = $data[self::FIRSTELEMENT];
                 if($result){
-                    if($result[self::FIRSTELEMENT]['enabled']){
-                        if($result[self::FIRSTELEMENT]['status'] == 'active'){
-                            session_start();
-                            $_SESSION['username'] = strtoupper($result[self::FIRSTELEMENT]['name']);
-                            $_SESSION['userid'] = strtoupper($result[self::FIRSTELEMENT]['id']);
-                            return ['status'=>200];
+                    if($result['enabled']){
+                        if($result['status'] == 'active'){
+                            if(password_verify($pass,$result['password'])){
+                                session_start();
+                                $_SESSION['username'] = strtoupper($result['name']);
+                                $_SESSION['userid'] = strtoupper($result['id']);
+                                return ['status'=>200];
+                            }else return ['status'=>404];
                         }else return ['status'=>300];
                     }else return ['status'=>403];
                 } else return ['status'=>404];
@@ -58,9 +60,11 @@
             }
         }
         function signin($name,$email){
-            $pass = password_hash(random_int(1000,99999), PASSWORD_DEFAULT);
+            $rac = random_int(1000,99999);
+            $pass = $rac; //password_hash($rac, PASSWORD_DEFAULT);
             try {
-                $prepQ = $this->dbConnection->prepare('SELECT * FROM users WHERE email = :email');
+                $prepQ = $this->dbConnection->prepare('SELECT * FROM users WHERE name = :name OR email = :email');
+                $prepQ->bindParam(':name', $name);
                 $prepQ->bindParam(':email', $email);
                 $prepQ->execute();
                 $otherUser = $prepQ->fetchAll(PDO::FETCH_ASSOC);
@@ -130,11 +134,15 @@
             try {
                 $prepQ = $this->dbConnection->prepare("SELECT * FROM users WHERE password = :rac AND status = 'new'");
                 $prepQ->bindParam(':rac', $rac);
-                $validRac = $prepQ->execute();
+                $prepQ->execute();
+                $validRac = $prepQ->fetchAll(PDO::FETCH_ASSOC);
                 if($validRac){
+                    $password = password_hash($pass, PASSWORD_DEFAULT);
+
                     $prepQ = $this->dbConnection->prepare("UPDATE users SET password = :pass, status = 'active' WHERE password = :rac AND status = 'new'");
-                    $prepQ->bindParam(':pass', $pass);
+                    $prepQ->bindParam(':pass', $password);
                     $prepQ->bindParam(':rac', $rac);
+
                     $result = $prepQ->execute();
                 return $result;
                 } else return false;
