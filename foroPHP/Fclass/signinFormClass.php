@@ -73,16 +73,17 @@ class signinFormClass {
                         EOF);
         }
     }
-
     function getSuccesfullSign(){
         
             return <<<EOF
-                <h1>Registro llevado a cabo de forma satisfactoria.</h1> 
-                <p>
-                    Pronto recibirá un correo con el enlace de acceso a la sección de activación de usuario y su correspondiente clave,
-                    para finalizar con el proceso de alta. 
-                    Revise su bandeja de correos, copie la clave y acceda al enlace.
-                </p>
+                <div class='signSuccesfullBanner'>
+                    <h1>Registro llevado a cabo de forma satisfactoria.</h1> 
+                    <p class='signSuccessfull'>
+                        Pronto recibirá un correo con el enlace de acceso a la sección de activación de usuario y su correspondiente clave,
+                        para finalizar con el proceso de alta. 
+                        Revise su bandeja de correos, copie la clave y acceda al enlace.
+                    </p>
+                </div>
             EOF;
     }
 }

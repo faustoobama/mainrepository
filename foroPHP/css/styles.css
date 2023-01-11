@@ -694,3 +694,21 @@ span,a{
     background: var(--var-mainbgc);
     color: var(--var-secbgc);
 }
+.signSuccesfullBanner{
+    margin: 50px auto 0 auto;
+    width: 999px;
+    height: fit-content;
+    padding:44px;
+    display: flex;
+    flex-direction: column;
+    background: var(--var-mainbgc);
+    row-gap: 33px;
+}
+.signSuccesfullBanner > h1 {
+    font-size: 66px;
+    text-align: center;
+}
+.signSuccessfull{
+    text-align: center;
+    font-size: 38px;
+}
