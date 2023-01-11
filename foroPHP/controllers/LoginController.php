@@ -37,7 +37,7 @@
     $form->printHeader();
     if($form->isValid()){
         $user = $form->getEmail()->getValue();
-        $pass = $form->getPassword()->getValue();
+        $pass = password_hash($form->getPassword()->getValue(), PASSWORD_DEFAULT);
 
         $result = $con->login($user, $pass);
 

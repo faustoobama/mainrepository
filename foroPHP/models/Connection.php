@@ -58,7 +58,7 @@
             }
         }
         function signin($name,$email){
-            $pass = random_int(1000,99999);
+            $pass = password_hash(random_int(1000,99999), PASSWORD_DEFAULT);
             try {
                 $prepQ = $this->dbConnection->prepare('SELECT * FROM users WHERE email = :email');
                 $prepQ->bindParam(':email', $email);

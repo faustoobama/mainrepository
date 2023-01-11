@@ -33,7 +33,7 @@
 *::-webkit-scrollbar-thumb{
     background-color: rgb(241, 216, 197);
 }
-.menu a:visited{
+.menu a:visited,.menu a:link{
     color: black;
 }
 #navContainer{
