@@ -13,12 +13,17 @@
             padding: 0 20px 20px 20px;
         }
         #dinamicTitle{
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 88px;
+            width: 100%;
+            font-size: 33px;
+            color: rgb(35, 35, 35);
         }
     </style>
 </head>
 <body>
-
     <p>
         Permitir cambiar los estilos del título de la página. Crear 2 botones para las acciones a implementar: <br><br>
         • Cambiar color <br><br>
@@ -26,7 +31,7 @@
     </p>
 
     <div id="cont">
-        <h1 id="dinamicTitle"> Este es un título dinámico</h1>
+        <div id="dinamicTitle"> <b>Este es un título dinámico</b> </div>
         <input type="button" id="changeColor" value="Cambiar color">
         <input type="button" id="changeFont" value="Cambiar tamaño Fuente">
     </div>
@@ -34,18 +39,18 @@
 <script>
     'use strict';
 
-    let dinamicTitle = document.getElementById('dinamicTitle'),
-        changeColor = document.getElementById('changeColor'),
-        changeFont = document.querySelector('#changeFont');
+    let dinamicTitle = document.getElementById('dinamicTitle'), // Elemento referente al titulo
+        changeColor = document.getElementById('changeColor'), // Elemento referente al boton de cambio de color
+        changeFont = document.querySelector('#changeFont'); // Elemento referente al boton de cambio de tamaño de fuente
 
-        changeColor.addEventListener('click',changeThatColor);
-        changeFont.addEventListener('click',changeThatFont);
+        changeColor.addEventListener('click',changeThatColor); // Cambio de color al hacer click sobre el boton
+        changeFont.addEventListener('click',changeThatFont); // Cambio del tamaño de fuente al hacer click sobre el boton
 
-        function changeThatColor(){
-            dinamicTitle.style.color = 'red';
+        function changeThatColor(){ // funcion para cambiar el color
+            dinamicTitle.style.color = '#'+(Math.trunc(Math.random()*1000000));
         }
-        function changeThatFont(){
-            dinamicTitle.style.fontSize = 25+'px';
+        function changeThatFont(){ // funcion para cambiar el tamaño de la fuente
+            dinamicTitle.style.fontSize = (Math.trunc((Math.random()*10) + 22))+'px';
         }
 </script>
 </html>
